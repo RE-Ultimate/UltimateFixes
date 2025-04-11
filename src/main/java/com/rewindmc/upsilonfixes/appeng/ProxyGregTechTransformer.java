@@ -6,7 +6,7 @@ import nilloader.api.lib.mini.PatchContext;
 import nilloader.api.lib.mini.annotation.Patch;
 
 @Patch.Class("appeng.proxy.ProxyGregTech")
-@ConfigOptions("appengQChestFix")
+@ConfigOptions("fixAppengQChest")
 public class ProxyGregTechTransformer extends UpsilonMiniTransformer {
 
     @Patch.Method("isQuantumChest(Lnet/minecraft/tileentity/TileEntity;)Z")

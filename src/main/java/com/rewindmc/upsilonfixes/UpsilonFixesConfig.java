@@ -49,11 +49,6 @@ public class UpsilonFixesConfig {
 			+ "so the Flux bee should be able to provide it.")
 	public static boolean aerFromFluxBee = true;
 	
-	@Key("appeng-qchest-fix")
-	@Comment("Prevents a crash when connecting a storage bus to GregTech machines as AppEng called "
-			+ "a non-existent API endpoint.")
-	public static boolean appengQChestFix = true;
-	
 	@Key("asm-workaround")
 	@Comment("Makes ASM 4.0 pretend to be able to understand Java 8 class files. Necessary when "
 			+ "using NilLoader via hijacking.")
@@ -68,20 +63,20 @@ public class UpsilonFixesConfig {
 	@Comment("Replaces the NEI overlay handler for shift-clicking recipes in Project Tables to "
 			+ "allow the insertion from its inventory. Previously only items in your inventory were used, not the ProjectTable inventory.")
 	public static boolean betterProjectTableNEIOverlay = true;
-
+	
 	@Key("buff-gregtech-jackhammers")
 	@Comment("Makes GregTech Jack Hammers a lot better.")
 	public static boolean buffGregTechJackHammers = true;
-	
+
 	@Key("buff-wrath-forge")
 	@Comment("Buffs the Factorization Wrath Forge by making the fire last forever.")
 	public static boolean buffWrathForge = true;
-
+	
 	@Key("disable-codechicken-stencil")
 	@Comment("Prevents CodeChickenCore from allocating a stencil buffer. May cause rendering "
 			+ "issues. Fixes the game not rendering at all on macOS.")
 	public static Trilean disableCodeChickenStencil = Trilean.AUTO;
-	
+
 	@Key("disable-xrandr")
 	@Comment("Linux-only. Disables buggy XRandR support in LWJGL2. Causes various weird issues like "
 			+ "monitor flickering when closing the game or >60Hz getting messed up.")
@@ -91,16 +86,21 @@ public class UpsilonFixesConfig {
 	@Comment("Prevents XyCraft's quartz crystals from generating. They're a huge performance hit and "
 			+ "nobody likes them.")
 	public static boolean disableXycraftQuartzCrystalWorldgen = true;
-
+	
 	@Key("drop-key-in-inventories")
 	@Comment("Allows pressing the drop key over a slot in an inventory to drop the contents of the "
 			+ "slot on the ground. 1.5 backport.")
 	public static boolean dropKeyInInventories = true;
-	
+
 	@Key("fix-anvil-peripheral")
 	@Comment("MiscPeripheral's Anvil repairs items even if the turtle doesn't have enough XP. It "
 			+ "also voids the first item if the second slot is empty.")
 	public static boolean fixAnvilPeripheral = true;
+	
+	@Key("fix-appeng-qchest")
+	@Comment("Prevents a crash when connecting a storage bus to GregTech machines as AppEng called "
+			+ "a non-existent API endpoint.")
+	public static boolean fixAppengQChest = true;
 
 	@Key("fix-chickenchunks-away-timeout")
 	@Comment("Fixes ChickenChunks awayTimeout feature. If enabled in the config it should keep " +
@@ -160,11 +160,6 @@ public class UpsilonFixesConfig {
 	@Comment("Fixes a crash when IC2 tries to apply seasonal easter eggs to certain entities.")
 	public static boolean fixIC2SeasonalCrash = true;
 	
-	@Key("fix-logistics-pipes-electric-manager-npe")
-	@Comment("Fixes a NullPointerException crash when the Electric Manager is inspecting items "
-			+ "with a null name.")
-	public static boolean fixLPElectricManagerNPE = true;
-
 	@Key("fix-miscperipherals-asm")
 	@Comment("Fixes misuse of the ASM API by MiscPeripherals breaking with newer ASM libraries.")
 	public static boolean fixMiscPeripheralsASM = true;
