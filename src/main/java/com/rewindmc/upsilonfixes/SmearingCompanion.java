@@ -78,7 +78,7 @@ public class SmearingCompanion {
 		}
 		if (buttonDown == -1) {
 			if (gui.mc.player.inventory.getItemStack() == null) {
-				vanillaClick(x, y, btn);
+				vanillaClick(x, y, btn, true);
 			} else {
 				buttonDown = btn;
 			}
@@ -93,7 +93,7 @@ public class SmearingCompanion {
 				// already handled
 				return;
 			}
-			vanillaClick(x, y, btn);
+			vanillaClick(x, y, btn, false);
 		} else if (btn == buttonDown) {
 			ItemStack hand = gui.mc.player.inventory.getItemStack();
 			if (hand != null) {
@@ -114,7 +114,7 @@ public class SmearingCompanion {
 		}
 	}
 	
-	private void vanillaClick(int x, int y, int btn) {
+	private void vanillaClick(int x, int y, int btn, boolean down) {
 		Slot slot = gui.getSlotAtPosition(x, y);
 		
 		int left = gui.guiLeft;
@@ -126,6 +126,9 @@ public class SmearingCompanion {
 		int slotNum;
 
 		if (clickedOutside) {
+			if (!down) {
+				return;
+			}
 			slotNum = -999;
 		} else if (slot != null) {
 			slotNum = slot.slotNumber;
