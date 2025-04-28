@@ -172,6 +172,11 @@ public class UpsilonFixesConfig {
 	@Comment("Fixes RedPower2 non-full-block hitboxes.")
 	public static boolean fixRedPowerHitboxes = true;
 	
+	@Key("fix-redpower-missing-inventory-npe")
+	@Comment("Fixes a NullPointerException crash caused by some cases of stale Inventory references "
+			+ "in RedPower2, primarily caused by Managers")
+	public static boolean fixRedPowerMissingInventoryNPE = true;
+	
 	@Key("fix-thermal-tesseract-cast")
 	@Comment("Fixes Thermal Expansion tesseract ClassCastException crashes when tile entity types "
 			+ "are desynced - can be caused by frame machines, turtles, etc.")
