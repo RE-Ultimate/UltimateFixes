@@ -98,6 +98,9 @@ public class UpsilonFixesForgePostInit implements Runnable {
 			try {
 				GTIndirection.init();
 			} catch (Throwable t) {}
+			if (UpsilonFixesConfig.increaseChatLimit) {
+				Packet3Chat.maxChatLength = 275;
+			}
 			try {
 				LPIndirection.init();
 			} catch (Throwable t) {}
