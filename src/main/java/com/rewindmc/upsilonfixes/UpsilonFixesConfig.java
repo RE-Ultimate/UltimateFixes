@@ -31,6 +31,18 @@ public class UpsilonFixesConfig {
 		String value();
 	}
 	
+	@Retention(RetentionPolicy.RUNTIME)
+	@Target(ElementType.FIELD)
+	public @interface Default {
+		AutoReference value();
+	}
+	
+	public enum AutoReference {
+		MACOS,
+		NEW_JAVA,
+		OLD_JAVA
+	}
+	
 	public enum Trilean {
 		AUTO,
 		OFF,
@@ -51,8 +63,10 @@ public class UpsilonFixesConfig {
 	
 	@Key("asm-workaround")
 	@Comment("Makes ASM 4.0 pretend to be able to understand Java 8 class files. Necessary when "
-			+ "using NilLoader via hijacking.")
-	public static boolean asmWorkaround = true;
+			+ "using NilLoader via hijacking. Breaks on newer Java, as it causes Forge to strip "
+			+ "all interface hints on invokes.")
+	@Default(AutoReference.OLD_JAVA)
+	public static Trilean asmWorkaround = Trilean.AUTO;
 	
 	@Key("attacker-yaw-syncing")
 	@Comment("Fixes the attacker yaw not syncing from server to client, to restore the proper "
@@ -75,6 +89,7 @@ public class UpsilonFixesConfig {
 	@Key("disable-codechicken-stencil")
 	@Comment("Prevents CodeChickenCore from allocating a stencil buffer. May cause rendering "
 			+ "issues. Fixes the game not rendering at all on macOS.")
+	@Default(AutoReference.MACOS)
 	public static Trilean disableCodeChickenStencil = Trilean.AUTO;
 
 	@Key("disable-xrandr")
@@ -253,6 +268,11 @@ public class UpsilonFixesConfig {
 	@Comment("Backports the modern individual configuration for hotbar keybinds.")
 	public static boolean modernHotbarBinds = true;
 	
+	@Key("modern-java-support")
+	@Comment("Patch FML to be compatible with newer versions of the JVM.")
+	@Default(AutoReference.NEW_JAVA)
+	public static Trilean modernJavaSupport = Trilean.AUTO;
+	
 	@Key("quantum-solar-helm-can-fix")
 	@Comment("Ultimate/Hybrid Solar Helmets will eat filled tin cans just like the quantum helmet "
 			+ "normally would.")
@@ -291,6 +311,7 @@ public class UpsilonFixesConfig {
 	@Key("swap-red-blue")
 	@Comment("Swap the red and blue channels in the main framebuffer. Fixes the game rendering "
 			+ "with incorrect colors on Apple Silicon Macs.")
+	@Default(AutoReference.MACOS)
 	public static Trilean swapRedBlue = Trilean.AUTO;
 
 	@Key("upsilon-branding")

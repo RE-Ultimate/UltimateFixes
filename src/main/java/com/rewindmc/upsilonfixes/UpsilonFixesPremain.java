@@ -13,6 +13,7 @@ import java.util.zip.ZipFile;
 import org.lwjgl.LWJGLUtil;
 
 import com.rewindmc.upsilonfixes.UpsilonFixesConfig.Trilean;
+import com.rewindmc.upsilonfixes.UpsilonFixesConfig.Default;
 
 import nilloader.api.ClassTransformer;
 import nilloader.api.NilLogger;
@@ -35,6 +36,7 @@ public class UpsilonFixesPremain implements Runnable {
 		try {
 			macOS = LWJGLUtil.getPlatform() == LWJGLUtil.PLATFORM_MACOSX;
 		} catch (NoClassDefFoundError e) {}
+		boolean newJava = !System.getProperty("java.version").startsWith("1.");
 		
 		try (ZipFile zip = new ZipFile(NilModList.getById("upsilonfixes").get().source)) {
 			for (ZipEntry en : asIterable(zip::entries)) {
@@ -51,14 +53,27 @@ public class UpsilonFixesPremain implements Runnable {
 								Field f = UpsilonFixesConfig.class.getField(o);
 								boolean v;
 								if (f.getType() == Trilean.class) {
-									// TODO currently all trileans are just macos checks, but this may change
-									v = ((Trilean)f.get(null)).resolve(macOS);
+									Default defAnn = f.getAnnotation(Default.class);
+									boolean def = false;
+									switch (defAnn.value()) {
+										case MACOS:
+											def = macOS;
+											break;
+										case NEW_JAVA:
+											def = newJava;
+											break;
+										case OLD_JAVA:
+											def = !newJava;
+											break;
+									}
+									v = ((Trilean)f.get(null)).resolve(def);
 								} else if (f.getType() == boolean.class || f.getType() == Boolean.class) {
 									v = (Boolean)f.get(null);
 								} else {
 									throw new ClassCastException(f.getType()+" is not boolean-convertible while looking up option "+o+" for "+name);
 								}
 								if (v) {
+									log.debug("{} is eligible because of config option {}", name, o);
 									enabled = true;
 									break;
 								}
@@ -70,6 +85,8 @@ public class UpsilonFixesPremain implements Runnable {
 								transformerTargets.add(((MiniTransformer)ct).getClassTargetName());
 							}
 							ClassTransformer.register(ct);
+						} else {
+							log.debug("{} is not eligible", name);
 						}
 					}
 				}
