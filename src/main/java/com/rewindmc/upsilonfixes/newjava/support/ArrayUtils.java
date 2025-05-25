@@ -1,6 +1,8 @@
 package com.rewindmc.upsilonfixes.newjava.support;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 public class ArrayUtils {
 
@@ -22,6 +24,13 @@ public class ArrayUtils {
 		T[] nw = Arrays.copyOf(arr, arr.length+1);
 		nw[arr.length] = val;
 		return nw;
+	}
+	
+	public static void main(String[] args) {
+		List<Integer> li = new ArrayList<Integer>();
+		li.add(8);
+		Integer[] a = (Integer[])li.toArray();
+		System.out.println(a);
 	}
 	
 }

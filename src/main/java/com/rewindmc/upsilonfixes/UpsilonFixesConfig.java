@@ -19,15 +19,15 @@ import nilloader.api.lib.qdcss.QDCSS;
 
 public class UpsilonFixesConfig {
 
-	@Retention(RetentionPolicy.RUNTIME)
-	@Target(ElementType.FIELD)
-	private @interface Comment {
-		String value();
+	public enum AutoReference {
+		MACOS,
+		NEW_JAVA,
+		OLD_JAVA
 	}
 	
 	@Retention(RetentionPolicy.RUNTIME)
 	@Target(ElementType.FIELD)
-	private @interface Key {
+	private @interface Comment {
 		String value();
 	}
 	
@@ -37,10 +37,10 @@ public class UpsilonFixesConfig {
 		AutoReference value();
 	}
 	
-	public enum AutoReference {
-		MACOS,
-		NEW_JAVA,
-		OLD_JAVA
+	@Retention(RetentionPolicy.RUNTIME)
+	@Target(ElementType.FIELD)
+	private @interface Key {
+		String value();
 	}
 	
 	public enum Trilean {
@@ -151,6 +151,11 @@ public class UpsilonFixesConfig {
 			+ "NEI.")
 	public static boolean fixEETransmuteRecipes = true;
 	
+	@Key("fix-enderstorage-unconditional-render")
+	@Comment("Prevents the inner end portal animation in Ender Chests from rendering when closed. "
+			+ "Majorly improves performance.")
+	public static boolean fixEnderStorageUnconditionalRender = true;
+	
 	@Key("fix-fonts-in-texture-packs")
 	@Comment("Allow texture packs to override the font.")
 	public static boolean fixFontsInTexturePacks = true;
@@ -174,7 +179,7 @@ public class UpsilonFixesConfig {
 	@Key("fix-ic2-seasonal-crash")
 	@Comment("Fixes a crash when IC2 tries to apply seasonal easter eggs to certain entities.")
 	public static boolean fixIC2SeasonalCrash = true;
-	
+
 	@Key("fix-miscperipherals-asm")
 	@Comment("Fixes misuse of the ASM API by MiscPeripherals breaking with newer ASM libraries.")
 	public static boolean fixMiscPeripheralsASM = true;
@@ -182,7 +187,7 @@ public class UpsilonFixesConfig {
 	@Key("fix-portal-gun-resources")
 	@Comment("Fixes sounds and music for Portal Gun by replacing the asset index.")
 	public static boolean fixPortalGunResources = true;
-
+	
 	@Key("fix-redpower-hitboxes")
 	@Comment("Fixes RedPower2 non-full-block hitboxes.")
 	public static boolean fixRedPowerHitboxes = true;
