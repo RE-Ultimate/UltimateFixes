@@ -327,6 +327,10 @@ public class UpsilonFixesConfig {
 	@Comment("Backports the 1.5 'water source blocks fill in above water' fix.")
 	public static boolean whirlpoolFix = true;
 
+	@Key("optimize-state-access")
+	@Comment("Optimizes some cases of mods accessing slow OpenGL state by caching it CPU-side.")
+	public static boolean optimizeStateAccess = true;
+
 	static {
 		Class<?> me = UpsilonFixesConfig.class;
 		if (me.getClassLoader() != ClassLoader.getSystemClassLoader()) {
