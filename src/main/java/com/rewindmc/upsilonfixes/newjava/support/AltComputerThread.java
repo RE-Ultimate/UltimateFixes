@@ -18,8 +18,6 @@ import com.rewindmc.upsilonfixes.UpsilonFixesPremain;
 import dan200.computer.core.Computer;
 import dan200.computer.core.ComputerThread;
 
-// Early CC: Tweaked reimplementation of ComputerThread from https://github.com/dan200/ComputerCraft/pull/218
-
 /*
  * Early CC:Tweaked rewritten ComputerThread from https://github.com/dan200/ComputerCraft/pull/218
  * Does not use Thread.stop
