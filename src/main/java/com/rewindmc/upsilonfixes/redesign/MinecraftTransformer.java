@@ -2,6 +2,7 @@ package com.rewindmc.upsilonfixes.redesign;
 
 import com.rewindmc.upsilonfixes.ConfigOptions;
 import com.rewindmc.upsilonfixes.UpsilonFixesConfig;
+import com.rewindmc.upsilonfixes.UpsilonFixesPremain;
 import com.rewindmc.upsilonfixes.UpsilonMiniTransformer;
 
 import net.minecraft.client.Minecraft;
@@ -56,9 +57,12 @@ public class MinecraftTransformer extends UpsilonMiniTransformer {
 		public static void tick() {
 			SoundSystem sys = SoundManager.sndSystem;
 			if (sys != null && sys.playing("BgMusic")) {
-				if (Minecraft.instance.world != null && wasPlayingMusic) {
-					sys.stop("BgMusic");
-					wasPlayingMusic = false;
+				if (Minecraft.instance.world != null) {
+					if (wasPlayingMusic) {
+						UpsilonFixesPremain.log.debug("Stopping music for game entry");
+						sys.stop("BgMusic");
+						wasPlayingMusic = false;
+					}
 				} else {
 					wasPlayingMusic = true;
 				}
