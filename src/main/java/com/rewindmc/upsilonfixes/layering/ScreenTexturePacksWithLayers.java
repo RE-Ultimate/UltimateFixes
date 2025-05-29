@@ -141,21 +141,21 @@ public class ScreenTexturePacksWithLayers extends Screen {
 			x += getXOffset();
 			
 			if (this.isSelected(i)) {
-				GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
-				GL11.glDisable(3553);
+				GL11.glColor4f(1, 1, 1, 1);
+				GL11.glDisable(GL11.GL_TEXTURE_2D);
 				tess.startDrawingQuads();
-				tess.setColorOpaque_I(8421504);
-				tess.addVertexWithUV(this.left, y + cellSize + 2, 0.0, 0.0, 1.0);
-				tess.addVertexWithUV(this.right, y + cellSize + 2, 0.0, 1.0, 1.0);
-				tess.addVertexWithUV(this.right, y - 2, 0.0, 1.0, 0.0);
-				tess.addVertexWithUV(this.left, y - 2, 0.0, 0.0, 0.0);
+				tess.setColorOpaque_I(0x808080);
+				tess.addVertexWithUV(this.left     , y + cellSize + 2, 0,   0, 1);
+				tess.addVertexWithUV(this.right    , y + cellSize + 2, 0,   1, 1);
+				tess.addVertexWithUV(this.right    , y - 2           , 0,   1, 0);
+				tess.addVertexWithUV(this.left     , y - 2           , 0,   0, 0);
 				tess.setColorOpaque_I(0);
-				tess.addVertexWithUV(this.left + 1, y + cellSize + 1, 0.0, 0.0, 1.0);
-				tess.addVertexWithUV(this.right - 1, y + cellSize + 1, 0.0, 1.0, 1.0);
-				tess.addVertexWithUV(this.right - 1, y - 1, 0.0, 1.0, 0.0);
-				tess.addVertexWithUV(this.left + 1, y - 1, 0.0, 0.0, 0.0);
+				tess.addVertexWithUV(this.left  + 1, y + cellSize + 1, 0,   0, 1);
+				tess.addVertexWithUV(this.right - 1, y + cellSize + 1, 0,   1, 1);
+				tess.addVertexWithUV(this.right - 1, y - 1           , 0,   1, 0);
+				tess.addVertexWithUV(this.left  + 1, y - 1           , 0,   0, 0);
 				tess.draw();
-				GL11.glEnable(3553);
+				GL11.glEnable(GL11.GL_TEXTURE_2D);
 			}
 			
 			ITexturePack pack = get(i);
