@@ -192,6 +192,11 @@ public class UpsilonFixesConfig {
 	@Comment("Fixes RedPower2 non-full-block hitboxes.")
 	public static boolean fixRedPowerHitboxes = true;
 	
+	@Key("fix-redpower-manager-permanent-backstuff")
+	@Comment("Fixes RedPower2 managers getting permanently backstuffed in complex networks that use "
+			+ "multiple priorities.")
+	public static boolean fixRedPowerManagerPermanentBackstuff = true;
+	
 	@Key("fix-redpower-missing-inventory-npe")
 	@Comment("Fixes a NullPointerException crash caused by some cases of stale Inventory references "
 			+ "in RedPower2, primarily caused by Managers")
