@@ -20,8 +20,8 @@ public class ScreenTexturePacksWithLayers extends Screen {
 	protected Screen parent;
 	private int refreshTimer = -1;
 	private String fileLocation = "";
-	private GuiTexturePackSlot texturePacks;
-	private GuiTexturePackLayerSlot layers;
+	private TexturePackScrollPane texturePacks;
+	private LayerPackScrollPane layers;
 
 	public ScreenTexturePacksWithLayers(Screen parent) {
 		this.parent = parent;
@@ -33,9 +33,9 @@ public class ScreenTexturePacksWithLayers extends Screen {
 		controlList.add(new WidgetButton(6, width / 2 + 4, height - 48, 150, 20, Translate.format("gui.done")));
 		mc.texturePacks.updateAvaliableTexturePacks();
 		fileLocation = new File(Minecraft.getMinecraftDir(), "texturepacks").getAbsolutePath();
-		texturePacks = new GuiTexturePackSlot();
+		texturePacks = new TexturePackScrollPane();
 		texturePacks.registerScrollButtons(controlList, 7, 8);
-		layers = new GuiTexturePackLayerSlot();
+		layers = new LayerPackScrollPane();
 		layers.registerScrollButtons(controlList, 9, 10);
 	}
 
@@ -63,11 +63,18 @@ public class ScreenTexturePacksWithLayers extends Screen {
 	@Override
 	public void drawScreen(int mouseX, int mouseY, float tickDelta) {
 		drawDefaultBackground();
-		texturePacks.drawScreen(mouseX, mouseY, tickDelta);
-		GL11.glPushMatrix();
-			GL11.glTranslatef(width*2/3, 0, 0);
-			layers.drawScreen(mouseX-(width*2/3), mouseY, tickDelta);
-		GL11.glPopMatrix();
+		int tpMouseY = -9000;
+		int lpMouseY = -9000;
+		
+		if (mouseX >= texturePacks.left && mouseX <= texturePacks.right) {
+			tpMouseY = mouseY;
+		}
+		if (mouseX >= layers.left && mouseX <= layers.right) {
+			lpMouseY = mouseY;
+		}
+		
+		texturePacks.drawScreen(texturePacks.width/2, tpMouseY, tickDelta);
+		layers.drawScreen(layers.width/2, lpMouseY, tickDelta);
 		if (refreshTimer <= 0) {
 			mc.texturePacks.updateAvaliableTexturePacks();
 			refreshTimer += 20;
@@ -87,13 +94,14 @@ public class ScreenTexturePacksWithLayers extends Screen {
 		refreshTimer--;
 	}
 
-	public abstract class GuiTexturePackSlotBase extends ScrollPane {
+	public abstract class AbstractTexturePackScrollPane extends ScrollPane {
 
 		protected final Minecraft mc;
 		
-		public GuiTexturePackSlotBase(Minecraft mc, int width, int height, int top, int bottom, int cellSize) {
+		public AbstractTexturePackScrollPane(Minecraft mc, int width, int height, int top, int bottom, int cellSize) {
 			super(mc, width, height, top, bottom, cellSize);
 			this.mc = mc;
+			showSelectionBox = false;
 		}
 		
 		@Override
@@ -129,6 +137,27 @@ public class ScreenTexturePacksWithLayers extends Screen {
 
 		@Override
 		public void drawSlot(int i, int x, int y, int cellSize, Tessellator tess) {
+			x += left;
+			x += getXOffset();
+			
+			if (this.isSelected(i)) {
+				GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
+				GL11.glDisable(3553);
+				tess.startDrawingQuads();
+				tess.setColorOpaque_I(8421504);
+				tess.addVertexWithUV(this.left, y + cellSize + 2, 0.0, 0.0, 1.0);
+				tess.addVertexWithUV(this.right, y + cellSize + 2, 0.0, 1.0, 1.0);
+				tess.addVertexWithUV(this.right, y - 2, 0.0, 1.0, 0.0);
+				tess.addVertexWithUV(this.left, y - 2, 0.0, 0.0, 0.0);
+				tess.setColorOpaque_I(0);
+				tess.addVertexWithUV(this.left + 1, y + cellSize + 1, 0.0, 0.0, 1.0);
+				tess.addVertexWithUV(this.right - 1, y + cellSize + 1, 0.0, 1.0, 1.0);
+				tess.addVertexWithUV(this.right - 1, y - 1, 0.0, 1.0, 0.0);
+				tess.addVertexWithUV(this.left + 1, y - 1, 0.0, 0.0, 0.0);
+				tess.draw();
+				GL11.glEnable(3553);
+			}
+			
 			ITexturePack pack = get(i);
 			mc.renderEngine.blurTexture = true;
 			pack.bindThumbnailTexture(mc.renderEngine);
@@ -148,6 +177,7 @@ public class ScreenTexturePacksWithLayers extends Screen {
 		}
 		
 		protected abstract boolean wantLayerPacks();
+		protected abstract int getXOffset();
 		
 		protected ITexturePack get(int i) {
 			int j = 0;
@@ -164,10 +194,12 @@ public class ScreenTexturePacksWithLayers extends Screen {
 		
 	}
 	
-	public class GuiTexturePackSlot extends GuiTexturePackSlotBase {
+	public class TexturePackScrollPane extends AbstractTexturePackScrollPane {
 		
-		public GuiTexturePackSlot() {
+		public TexturePackScrollPane() {
 			super(ScreenTexturePacksWithLayers.this.mc, (ScreenTexturePacksWithLayers.this.width*2/3)-4, ScreenTexturePacksWithLayers.this.height, 32, ScreenTexturePacksWithLayers.this.height - 55 + 4, 36);
+			this.left = 0;
+			this.right = this.width;
 		}
 		
 		@Override
@@ -198,12 +230,19 @@ public class ScreenTexturePacksWithLayers extends Screen {
 			return getSize() * 36;
 		}
 		
+		@Override
+		protected int getXOffset() {
+			return 0;
+		}
+		
 	}
 	
-	public class GuiTexturePackLayerSlot extends GuiTexturePackSlotBase {
+	public class LayerPackScrollPane extends AbstractTexturePackScrollPane {
 		
-		public GuiTexturePackLayerSlot() {
+		public LayerPackScrollPane() {
 			super(ScreenTexturePacksWithLayers.this.mc, ScreenTexturePacksWithLayers.this.width/3, ScreenTexturePacksWithLayers.this.height, 32, ScreenTexturePacksWithLayers.this.height - 55 + 4, 36);
+			this.left = ScreenTexturePacksWithLayers.this.width-this.width;
+			this.right = ScreenTexturePacksWithLayers.this.width;
 		}
 		
 		@Override
@@ -226,7 +265,7 @@ public class ScreenTexturePacksWithLayers extends Screen {
 
 		@Override
 		public boolean isSelected(int i) {
-			return false;
+			return Layering.enabledLayerPacks.contains(get(i));
 		}
 
 		@Override
@@ -235,27 +274,8 @@ public class ScreenTexturePacksWithLayers extends Screen {
 		}
 		
 		@Override
-		public void drawSlot(int i, int x, int y, int cellSize, Tessellator tess) {
-			if (Layering.enabledLayerPacks.contains(get(i))) {
-				int left = this.width / 2 - 70;
-				int right = this.width / 2 + 70;
-				GL11.glColor4f(1, 1, 1, 1);
-				GL11.glDisable(GL11.GL_TEXTURE_2D);
-				tess.startDrawingQuads();
-				tess.setColorOpaque_I(0x808080);
-				tess.addVertexWithUV(left, y + cellSize + 1, 0, 0, 1);
-				tess.addVertexWithUV(right, y + cellSize + 1, 0, 1, 1);
-				tess.addVertexWithUV(right, y - 2, 0, 1, 0);
-				tess.addVertexWithUV(left, y - 2, 0, 0, 0);
-				tess.setColorOpaque_I(0x000000);
-				tess.addVertexWithUV(left + 1, y + cellSize, 0, 0, 1);
-				tess.addVertexWithUV(right - 1, y + cellSize, 0, 1, 1);
-				tess.addVertexWithUV(right - 1, y - 1, 0, 1, 0);
-				tess.addVertexWithUV(left + 1, y - 1, 0, 0, 0);
-				tess.draw();
-				GL11.glEnable(GL11.GL_TEXTURE_2D);
-			}
-			super.drawSlot(i, x+40, y, cellSize, tess);
+		protected int getXOffset() {
+			return 40;
 		}
 		
 	}
