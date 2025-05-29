@@ -384,12 +384,29 @@ public class UpsilonFixesConfig {
 	@Key("remove.vanilla-snooper")
  	@Comment("Removes the vanilla snooper. The server is gone anyway.")
  	public static boolean removeSnooper = true;
- 
+	 
 	@OldKey("remove-version-checkers")
-	@Key("remove.version-checkers")
+	@Key("remove.dead-version-checkers")
  	@Comment("Removes attempts to contact dead version servers by mods that no longer receive "
  			+ "updates. (As such, does not disable BlockHelper or BuildCraft.)")
  	public static boolean removeVersionCheckers = true;
+	 
+	@Key("remove.all-version-checkers")
+ 	@Comment("Even remove update checkers that still work. Allows a fully-offline game launch.")
+ 	public static boolean removeAllVersionCheckers = true;
+ 	
+	@Key("remove.vanilla-resource-downloader")
+ 	@Comment("Prevent vanilla from attempting to contact a dead S3 bucket on launch to check for "
+ 			+ "resources to download. This is handled by launchers nowadays, and sounds are "
+ 			+ "prevented from playing until a response is received from the server.")
+ 	public static boolean removeVanillaResourceDownload = true;
+ 	
+	@Key("remove.portalgun-resource-downloader")
+ 	@Comment("Prevent Portal Gun from attempting to download resources. Alternative to "
+ 			+ "fixes.portalgun-resources that prevents server connections, but is incapable of "
+ 			+ "bootstrapping. Used in Rewind Upsilon as that distributes the Portal Gun resources "
+ 			+ "via unsup.")
+ 	public static boolean removePortalGunResourceDownload = false;
  
 	@OldKey("smearing")
 	@Key("backports.vanilla-smearing")
