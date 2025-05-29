@@ -51,7 +51,9 @@ public class Layering {
 	}
 	
 	public static void saveEnabledLayers() {
-		File f = new File("config/upsilonfixes-enabled-layers.txt");
+		File dir = new File("config/upsilonfixes");
+		dir.mkdirs();
+		File f = new File(dir, "enabled-layers.txt");
 		try (FileOutputStream out = new FileOutputStream(f)) {
 			for (ITexturePack pack : enabledLayerPacks) {
 				out.write(pack.getTexturePackFileName().getBytes(StandardCharsets.UTF_8));
@@ -60,12 +62,17 @@ public class Layering {
 		} catch (Exception e) {
 			UpsilonFixesPremain.log.error("Failed to save enabled layers", e);
 		}
+		new File("config/upsilonfixes-enabled-layers.txt").delete();
 	}
 	
 	public static void refresh(List<ITexturePack> avail) {
 		enabledLayerPacks.clear();
 		Set<String> enabledNames = new HashSet<>();
-		File f = new File("config/upsilonfixes-enabled-layers.txt");
+		File dir = new File("config/upsilonfixes");
+		File f = new File(dir, "enabled-layers.txt");
+		if (!f.exists()) {
+			f = new File("config/upsilonfixes-enabled-layers.txt");
+		}
 		try (BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream(f), StandardCharsets.UTF_8))) {
 			while (true) {
 				String line = br.readLine();

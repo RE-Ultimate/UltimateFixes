@@ -459,10 +459,16 @@ public class UpsilonFixesConfig {
 				throw new AssertionError(t);
 			}
 		} else {
-			File cfg = new File("config/upsilonfixes.css");
+			boolean deleteLoad = false;
+			File cfgLoad = new File("config/upsilonfixes/patches.css");
+			File cfgSave = cfgLoad;
+			if (!cfgLoad.exists()) {
+				deleteLoad = true;
+				cfgLoad = new File("config/upsilonfixes.css");
+			}
 			QDCSS css = QDCSS.load("", "");
 			try {
-				css = QDCSS.load(cfg);
+				css = QDCSS.load(cfgLoad);
 			} catch (FileNotFoundException e) {
 			} catch (IOException e) {
 				UpsilonFixesPremain.log.error("Failed to load upsilonfixes.css", e);
@@ -548,9 +554,10 @@ public class UpsilonFixesConfig {
 				out.append("\t"+e.key+": "+e.value+";\r\n");
 			}
 			out.append("}\r\n");
-			try (FileOutputStream fos = new FileOutputStream(cfg)) {
-				cfg.getParentFile().mkdirs();
+			cfgSave.getParentFile().mkdirs();
+			try (FileOutputStream fos = new FileOutputStream(cfgSave)) {
 				fos.write(out.toString().getBytes("UTF-8"));
+				if (deleteLoad) cfgLoad.delete();
 			} catch (IOException e) {
 				e.printStackTrace();
 				System.err.println("Failed to save UpsilonFixes config");
