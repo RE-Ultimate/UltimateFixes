@@ -393,7 +393,7 @@ public class UpsilonFixesConfig {
 	 
 	@Key("remove.all-version-checkers")
  	@Comment("Even remove update checkers that still work. Allows a fully-offline game launch.")
- 	public static boolean removeAllVersionCheckers = true;
+ 	public static boolean removeAllVersionCheckers = false;
  	
 	@Key("remove.vanilla-resource-downloader")
  	@Comment("Prevent vanilla from attempting to contact a dead S3 bucket on launch to check for "
