@@ -278,6 +278,10 @@ public class UpsilonFixesConfig {
 	@Default(AutoReference.NEW_JAVA)
 	public static Trilean modernJavaSupport = Trilean.AUTO;
 	
+	@Key("optimize-state-access")
+	@Comment("Optimizes some cases of mods accessing slow OpenGL state by caching it CPU-side.")
+	public static boolean optimizeStateAccess = true;
+	
 	@Key("quantum-solar-helm-can-fix")
 	@Comment("Ultimate/Hybrid Solar Helmets will eat filled tin cans just like the quantum helmet "
 			+ "normally would.")
@@ -294,11 +298,11 @@ public class UpsilonFixesConfig {
 	@Key("remove-dead-cosmetics")
 	@Comment("Some mods add cosmetics (usually capes) that try to contact dead servers.")
 	public static boolean removeDeadCosmetics = true;
-	
+
 	@Key("remove-snooper")
 	@Comment("Removes the vanilla snooper. The server is gone anyway.")
 	public static boolean removeSnooper = true;
-	
+
 	@Key("remove-version-checkers")
 	@Comment("1.4.7 mods don't really get updates anymore, and many version checkers try to "
 			+ "contact dead servers.")
@@ -326,10 +330,6 @@ public class UpsilonFixesConfig {
 	@Key("whirlpool-fix")
 	@Comment("Backports the 1.5 'water source blocks fill in above water' fix.")
 	public static boolean whirlpoolFix = true;
-
-	@Key("optimize-state-access")
-	@Comment("Optimizes some cases of mods accessing slow OpenGL state by caching it CPU-side.")
-	public static boolean optimizeStateAccess = true;
 
 	static {
 		Class<?> me = UpsilonFixesConfig.class;
