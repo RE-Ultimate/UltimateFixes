@@ -11,15 +11,6 @@ group = 'com.unascribed'
 archivesBaseName = 'UpsilonFixes'
 version = '1.6.0'
 
-task bootstrapPack(type: JavaExec) {
-	outputs.dir 'libs/pack/mods'
-
-	classpath = files('libs/pack/unsup.jar')
-	workingDir = 'libs/pack'
-}
-
-compileJava.dependsOn bootstrapPack
-
 repositories {
 	mavenCentral {
 		content {

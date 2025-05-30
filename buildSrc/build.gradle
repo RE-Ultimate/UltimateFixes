@@ -1,0 +1,8 @@
+task bootstrapPack(type: JavaExec) {
+	outputs.dir '../libs/pack/mods'
+
+	classpath = files('../libs/pack/unsup.jar')
+	workingDir = '../libs/pack'
+}
+
+compileJava.dependsOn bootstrapPack

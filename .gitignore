@@ -1,5 +1,7 @@
 /bin/
 /.gradle/
+/buildSrc/.gradle/
+/buildSrc/build/
 /build/
 mcp726a.zip
 .classpath
