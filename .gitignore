@@ -6,4 +6,6 @@ mcp726a.zip
 .project
 .settings
 .idea
-/libs
+/libs/pack/*
+!/libs/pack/unsup.ini
+!/libs/pack/unsup.jar

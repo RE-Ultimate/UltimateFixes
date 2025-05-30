@@ -565,8 +565,24 @@ public class UpsilonFixesConfig {
 		}
 	}
 	
-	// stolen from Apache Commons Lang
 	public static String fold(String str, int wrapLength) {
+		String[] spl = str.split("\n");
+		int len = 0;
+		for (int i = 0; i < spl.length; i++) {
+			spl[i] = _fold(spl[i], wrapLength);
+			len += spl[i].length();
+		}
+		StringBuilder sb = new StringBuilder(len+spl.length);
+		for (String l : spl) {
+			sb.append(l);
+			sb.append("\n");
+		}
+		sb.setLength(sb.length()-1);
+		return sb.toString();
+	}
+	
+	// stolen from Apache Commons Lang
+	public static String _fold(String str, int wrapLength) {
 		if (str == null) {
 			return null;
 		}
