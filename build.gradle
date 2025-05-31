@@ -76,6 +76,7 @@ dependencies {
 	mod 'libs:XReliquary'
 	mod 'libs:CodeChickenCore'
 	mod 'libs:ComputerCraft'
+	mod 'libs:Forestry'
 }
 
 mappings {

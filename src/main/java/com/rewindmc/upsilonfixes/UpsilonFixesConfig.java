@@ -86,6 +86,11 @@ public class UpsilonFixesConfig {
  			+ "camera tilt animation when damaged.")
  	public static boolean attackerYawSyncing = true;
  	
+	@Key("tweaks.miscperipherals-bee-analyzer")
+ 	@Comment("Adds additional methods to the MiscPeripherals Bee Analyzer to allow reading both "
+ 			+ "primary and secondary alleles. Previously, only primary traits would be read.")
+ 	public static boolean tweakBeeAnalyzer = true;
+ 	
 	@OldKey("better-projecttable-nei-overlay")
 	@Key("tweaks.rp2-better-projecttable-nei-overlay")
  	@Comment("Replaces the NEI overlay handler for shift-clicking recipes in Project Tables to "
@@ -176,6 +181,12 @@ public class UpsilonFixesConfig {
  	@Comment("Prevents DartCraft mobs from spawning in wrong biomes. Moves the registration from "
  			+ "post init to init and prevents spawn in Mushroom Island biomes.")
  	public static boolean fixDartCraftMobSpawnRegistration = true;
+ 	
+	@Key("fixes.dye-ore-dictionary")
+ 	@Comment("Transforms many recipes that accept vanilla dyes to also accept modded dyes. "
+ 			+ "Recipes that use certain dyes as their actual item (Lapis, Cocoa Beans, etc.) "
+			+ "are left as is.")
+ 	public static boolean fixDyeOreDict = true;
  	
 	@OldKey("fix-ee-transmute-recipes")
 	@Key("fixes.ee-transmute-recipes")

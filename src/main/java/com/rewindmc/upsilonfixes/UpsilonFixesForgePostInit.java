@@ -20,6 +20,7 @@ import ic2.core.util.KeyboardClient;
 import info.jbcs.minecraft.chisel.Chisel;
 import logisticspipes.proxy.SimpleServiceLocator;
 import net.minecraft.network.packet.Packet3Chat;
+import net.minecraftforge.common.MinecraftForge;
 
 public class UpsilonFixesForgePostInit implements Runnable {
 
@@ -104,6 +105,7 @@ public class UpsilonFixesForgePostInit implements Runnable {
 			try {
 				LPIndirection.init();
 			} catch (Throwable t) {}
+			MinecraftForge.EVENT_BUS.register(new UpsilonForgeEvents());
 			if (FMLCommonHandler.instance().getSide() == Side.CLIENT) {
 				try {
 					Client.init();
