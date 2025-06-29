@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
+import java.util.Properties;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
 import java.util.concurrent.ScheduledExecutorService;
@@ -38,6 +39,16 @@ public class LanguageRegistryTransformer extends UpsilonMiniTransformer {
 		);
 	}
 	
+	@Patch.Method("addStringLocalization(Ljava/util/Properties;Ljava/lang/String;)V")
+	public void patchAddStringLocalizationBulk(PatchContext ctx) {
+		ctx.jumpToStart();
+		ctx.add(
+			ALOAD(1),
+			ALOAD(2),
+			INVOKESTATIC(hooks(), "addStringLocalization", "(Ljava/util/Properties;Ljava/lang/String;)V")
+		);
+	}
+	
 	public static class Hooks {
 		
 		public static final ThreadLocal<String> modidOverride = ThreadLocal.withInitial(() -> null);
@@ -47,6 +58,12 @@ public class LanguageRegistryTransformer extends UpsilonMiniTransformer {
 		private static final Map<String, Map<String, JsonObject>> translations = new HashMap<>();
 		private static final ScheduledExecutorService sched = Executors.newScheduledThreadPool(0);
 		private static Future<?> future;
+
+		public static void addStringLocalization(Properties props, String lang) {
+			for (Map.Entry<Object, Object> en : props.entrySet()) {
+				addStringLocalization(String.valueOf(en.getKey()), lang, String.valueOf(en.getValue()));
+			}
+		}
 		
 		public static void addStringLocalization(String key, String lang, String value) {
 			ModContainer mod = Loader.instance().activeModContainer();
