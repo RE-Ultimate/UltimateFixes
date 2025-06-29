@@ -1,8 +1,12 @@
 package com.rewindmc.upsilonfixes;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
-
+import java.util.Map;
+import com.rewindmc.upsilonfixes.lang.LanguageRegistryTransformer;
 import com.rewindmc.upsilonfixes.tubestuff.AutoCraftingMk2CraftingRecipeProvider;
 import com.rewindmc.upsilonfixes.vanilla.ModernHotbarBinds;
 import com.rewindmc.upsilonfixes.xycraft.FabricatorCraftingRecipeProvider;
@@ -21,6 +25,9 @@ import info.jbcs.minecraft.chisel.Chisel;
 import logisticspipes.proxy.SimpleServiceLocator;
 import net.minecraft.network.packet.Packet3Chat;
 import net.minecraftforge.common.MinecraftForge;
+import nilloader.api.lib.nanojson.JsonObject;
+import nilloader.api.lib.nanojson.JsonParser;
+import nilloader.api.lib.nanojson.JsonParserException;
 
 public class UpsilonFixesForgePostInit implements Runnable {
 
@@ -91,10 +98,20 @@ public class UpsilonFixesForgePostInit implements Runnable {
 		
 		public static void run() {
 			if (UpsilonFixesConfig.localizeRejuvenatingEffect) {
-				LanguageRegistry.instance().addStringLocalization("thaumicbees.effectNodeCharge", "Aura Charge");
+				LanguageRegistryTransformer.Hooks.modidOverride.set("ThaumicBees");
+				try {
+					LanguageRegistry.instance().addStringLocalization("thaumicbees.effectNodeCharge", "Aura Charge");
+				} finally {
+					
+				}
 			}
 			if (UpsilonFixesConfig.localizeTradeOMatStock) {
-				LanguageRegistry.instance().addStringLocalization("container.personalTrader.stock", "Stock");
+				LanguageRegistryTransformer.Hooks.modidOverride.set("IC2");
+				try {
+					LanguageRegistry.instance().addStringLocalization("container.personalTrader.stock", "Stock");
+				} finally {
+					LanguageRegistryTransformer.Hooks.modidOverride.set(null);
+				}
 			}
 			try {
 				GTIndirection.init();
@@ -111,8 +128,52 @@ public class UpsilonFixesForgePostInit implements Runnable {
 					Client.init();
 				} catch (Throwable t) {}
 			}
+			if (UpsilonFixesConfig.loadLang) {
+				File dir = new File("lang");
+				File[] list = dir.listFiles();
+				if (list != null) {
+					int files = 0;
+					int keys = 0;
+					for (File mod : list) {
+						String modid = mod.getName();
+						File[] langlist = mod.listFiles();
+						if (langlist != null) {
+							LanguageRegistryTransformer.Hooks.modidOverride.set(modid);
+							try {
+								for (File langFile : langlist) {
+									if (langFile.isFile() && langFile.getName().endsWith(".json")) {
+										String lang = langFile.getName();
+										lang = lang.substring(0, lang.length()-5);
+										try (FileInputStream in = new FileInputStream(langFile)) {
+											JsonObject obj = JsonParser.object().from(in);
+											files++;
+											for (Map.Entry<String, Object> en : obj.entrySet()) {
+												if (en.getValue() instanceof String) {
+													keys++;
+													LanguageRegistry.instance().addStringLocalization(en.getKey(), lang, (String)en.getValue());
+												} else {
+													UpsilonFixesPremain.log.warn("Invalid value type {} for key {} in {}", en.getValue().getClass().getSimpleName(), en.getKey(), langFile);
+												}
+											}
+										} catch (IOException | JsonParserException e) {
+											UpsilonFixesPremain.log.error("Failed to load {}", langFile, e);
+										}
+									}
+								}
+							} finally {
+								LanguageRegistryTransformer.Hooks.modidOverride.set(null);
+							}
+						}
+					}
+					if (files > 0) {
+						UpsilonFixesPremain.log.info("Injected {} lang key{} from {} file{}", keys, keys == 1 ? "" : "s", files, files == 1 ? "" : "s");
+					} else {
+						UpsilonFixesPremain.log.debug("Found no lang files to inject from");
+					}
+				}
+			}
 		}
-		
+
 		public static class Client {
 			
 			private static class IC2ClientIndirection {

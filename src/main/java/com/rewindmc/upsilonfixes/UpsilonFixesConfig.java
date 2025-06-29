@@ -86,11 +86,6 @@ public class UpsilonFixesConfig {
  			+ "camera tilt animation when damaged.")
  	public static boolean attackerYawSyncing = true;
  	
-	@Key("tweaks.miscperipherals-bee-analyzer")
- 	@Comment("Adds additional methods to the MiscPeripherals Bee Analyzer to allow reading both "
- 			+ "primary and secondary alleles. Previously, only primary traits would be read.")
- 	public static boolean tweakBeeAnalyzer = true;
- 	
 	@OldKey("better-projecttable-nei-overlay")
 	@Key("tweaks.rp2-better-projecttable-nei-overlay")
  	@Comment("Replaces the NEI overlay handler for shift-clicking recipes in Project Tables to "
@@ -103,12 +98,12 @@ public class UpsilonFixesConfig {
  			+ "bulk block mining even into endgame, but only for the typical \"natural\" stone "
  			+ "blocks.")
  	public static boolean buffGregTechJackHammers = true;
- 
+ 	
 	@OldKey("buff-wrath-forge")
 	@Key("tweaks.fz-buff-wrath-forge")
  	@Comment("Buffs Factorization Wrath Forge construction by allowing the fire to last forever.")
  	public static boolean buffWrathForge = true;
- 	
+ 
 	@OldKey("disable-codechicken-stencil")
 	@Key("fixes.codechicken-disable-stencil")
  	@Comment("Prevents CodeChickenCore from allocating a stencil buffer. May cause rendering "
@@ -116,13 +111,13 @@ public class UpsilonFixesConfig {
  			+ "\"auto\" acts as \"on\" on macOS, and \"off\" otherwise.")
  	@Default(AutoReference.MACOS)
  	public static Trilean disableCodeChickenStencil = Trilean.AUTO;
- 
+ 	
 	@OldKey("disable-xrandr")
 	@Key("hacks.disable-xrandr")
  	@Comment("Linux-only. Disables buggy XRandR support in LWJGL2. Causes various weird issues like "
  			+ "monitor flickering when closing the game or >60Hz getting messed up.")
  	public static boolean disableXrandr = true;
- 	
+ 
 	@OldKey("disable-xycraft-quartz-crystal-worldgen")
 	@Key("tweaks.xycraft-disable-quartz-crystal-worldgen")
  	@Comment("Prevents XyCraft's quartz crystals from generating. They're a huge performance hit and "
@@ -134,6 +129,16 @@ public class UpsilonFixesConfig {
  	@Comment("Allows pressing the drop key over a slot in an inventory to drop the contents of the "
  			+ "slot on the ground. 1.5 backport.")
  	public static boolean dropKeyInInventories = true;
+ 	
+	@Key("features.dump-lang")
+ 	@Comment("If on, dumps json files containing each mods' localizations to a \"langdumps\""
+ 			+ "directory.")
+ 	public static boolean dumpLang = false;
+ 	
+	@Key("features.load-lang")
+ 	@Comment("If on, loads lang files in a similar format to dump-lang (lang/modid/language.json)"
+ 			+ "into the FML LanguageRegistry.")
+ 	public static boolean loadLang = true;
  
 	@OldKey("fix-anvil-peripheral")
 	@Key("fixes.miscperipherals-anvil")
@@ -386,25 +391,26 @@ public class UpsilonFixesConfig {
  	@Comment("Add support for BuildCraft pipes to RedPower2.")
  	public static boolean redpowerBCCompat = true;
  	
+	@Key("remove.all-version-checkers")
+ 	@Comment("Even remove update checkers that still work. Allows a fully-offline game launch.")
+ 	public static boolean removeAllVersionCheckers = false;
+ 
 	@OldKey("remove-dead-cosmetics")
 	@Key("remove.dead-cosmetics")
  	@Comment("Prevent various mods from contacting dead servers for cosmetic features, such as capes.")
  	public static boolean removeDeadCosmetics = true;
- 
+	 
+	@Key("remove.portalgun-resource-downloader")
+ 	@Comment("Prevent Portal Gun from attempting to download resources. Alternative to "
+ 			+ "fixes.portalgun-resources that prevents server connections, but is incapable of "
+ 			+ "bootstrapping. Used in Rewind Upsilon as that distributes the Portal Gun resources "
+ 			+ "via unsup.")
+ 	public static boolean removePortalGunResourceDownload = false;
+	 
 	@OldKey("remove-snooper")
 	@Key("remove.vanilla-snooper")
  	@Comment("Removes the vanilla snooper. The server is gone anyway.")
  	public static boolean removeSnooper = true;
-	 
-	@OldKey("remove-version-checkers")
-	@Key("remove.dead-version-checkers")
- 	@Comment("Removes attempts to contact dead version servers by mods that no longer receive "
- 			+ "updates. (As such, does not disable BlockHelper or BuildCraft.)")
- 	public static boolean removeVersionCheckers = true;
-	 
-	@Key("remove.all-version-checkers")
- 	@Comment("Even remove update checkers that still work. Allows a fully-offline game launch.")
- 	public static boolean removeAllVersionCheckers = false;
  	
 	@Key("remove.vanilla-resource-downloader")
  	@Comment("Prevent vanilla from attempting to contact a dead S3 bucket on launch to check for "
@@ -412,12 +418,11 @@ public class UpsilonFixesConfig {
  			+ "prevented from playing until a response is received from the server.")
  	public static boolean removeVanillaResourceDownload = true;
  	
-	@Key("remove.portalgun-resource-downloader")
- 	@Comment("Prevent Portal Gun from attempting to download resources. Alternative to "
- 			+ "fixes.portalgun-resources that prevents server connections, but is incapable of "
- 			+ "bootstrapping. Used in Rewind Upsilon as that distributes the Portal Gun resources "
- 			+ "via unsup.")
- 	public static boolean removePortalGunResourceDownload = false;
+	@OldKey("remove-version-checkers")
+	@Key("remove.dead-version-checkers")
+ 	@Comment("Removes attempts to contact dead version servers by mods that no longer receive "
+ 			+ "updates. (As such, does not disable BlockHelper or BuildCraft.)")
+ 	public static boolean removeVersionCheckers = true;
  
 	@OldKey("smearing")
 	@Key("backports.vanilla-smearing")
@@ -438,12 +443,16 @@ public class UpsilonFixesConfig {
  	@Default(AutoReference.MACOS)
  	public static Trilean swapRedBlue = Trilean.AUTO;
  
+	@Key("tweaks.miscperipherals-bee-analyzer")
+ 	@Comment("Adds additional methods to the MiscPeripherals Bee Analyzer to allow reading both "
+ 			+ "primary and secondary alleles. Previously, only primary traits would be read.")
+ 	public static boolean tweakBeeAnalyzer = true;
+	 
 	@OldKey("upsilon-branding")
 	@Key("features.upsilon-branding")
  	@Comment("Enables the Rewind Upsilon modpack branding.")
  	public static boolean upsilonBranding = false;
- 
-	@OldKey("whirlpool-fix")
+	 
 	@Key("backports.vanilla-whirlpool-fix")
  	@Comment("Fixes a typo in the water propagation code that prevents water sources from forming "
  			+ "above existing water sources, resulting in \"whirlpools\" when buckets are used in "
@@ -576,22 +585,6 @@ public class UpsilonFixesConfig {
 		}
 	}
 	
-	public static String fold(String str, int wrapLength) {
-		String[] spl = str.split("\n");
-		int len = 0;
-		for (int i = 0; i < spl.length; i++) {
-			spl[i] = _fold(spl[i], wrapLength);
-			len += spl[i].length();
-		}
-		StringBuilder sb = new StringBuilder(len+spl.length);
-		for (String l : spl) {
-			sb.append(l);
-			sb.append("\n");
-		}
-		sb.setLength(sb.length()-1);
-		return sb.toString();
-	}
-	
 	// stolen from Apache Commons Lang
 	public static String _fold(String str, int wrapLength) {
 		if (str == null) {
@@ -631,6 +624,22 @@ public class UpsilonFixesConfig {
 		wrappedLine.append(str.substring(offset));
 
 		return wrappedLine.toString();
+	}
+	
+	public static String fold(String str, int wrapLength) {
+		String[] spl = str.split("\n");
+		int len = 0;
+		for (int i = 0; i < spl.length; i++) {
+			spl[i] = _fold(spl[i], wrapLength);
+			len += spl[i].length();
+		}
+		StringBuilder sb = new StringBuilder(len+spl.length);
+		for (String l : spl) {
+			sb.append(l);
+			sb.append("\n");
+		}
+		sb.setLength(sb.length()-1);
+		return sb.toString();
 	}
 
 }

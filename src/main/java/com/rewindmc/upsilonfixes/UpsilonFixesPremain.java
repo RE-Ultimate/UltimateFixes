@@ -22,7 +22,16 @@ import nilloader.api.lib.mini.MiniTransformer;
 
 public class UpsilonFixesPremain implements Runnable {
 	
-	public static final NilLogger log = NilLogger.get("UpsilonFixes");
+	public static final NilLogger log; static {
+		NilLogger logTmp = null;
+		if (UpsilonFixesPremain.class.getClassLoader() != ClassLoader.getSystemClassLoader()) {
+			try {
+				logTmp = (NilLogger)Class.forName(UpsilonFixesPremain.class.getName(), false, ClassLoader.getSystemClassLoader()).getField("log").get(null);
+			} catch (Throwable e) {}
+		}
+		if (logTmp == null) logTmp = NilLogger.get("UpsilonFixes");
+		log = logTmp;
+	}
 	
 	public static final List<String> transformerTargets = new ArrayList<>();
 	
