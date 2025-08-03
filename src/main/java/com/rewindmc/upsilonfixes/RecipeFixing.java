@@ -17,6 +17,7 @@ import net.minecraft.item.crafting.CraftingManager;
 import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.item.crafting.ShapedRecipes;
 import net.minecraft.item.crafting.ShapelessRecipes;
+import net.minecraftforge.oredict.OreDictionary;
 import net.minecraftforge.oredict.ShapedOreRecipe;
 import net.minecraftforge.oredict.ShapelessOreRecipe;
 
@@ -76,6 +77,7 @@ public class RecipeFixing {
 		if (REPLACEMENTS.isEmpty()) {
 			return;
 		}
+		int amt = 0;
 		List<IRecipe> recipes = CraftingManager.getInstance().recipes;
 		for (int i = 0; i < recipes.size(); i++) {
 			IRecipe recipe = recipes.get(i);
@@ -86,35 +88,32 @@ public class RecipeFixing {
 			if (recipe instanceof ShapedRecipes) {
 				ShapedRecipes shaped = (ShapedRecipes) recipe;
 				if (shouldCoerce(shaped.recipeItems)) {
-					recipes.set(i, new ShapedOreRecipe(shaped, getReplacements(Arrays.asList(shaped.recipeItems))));
+					Map<ItemStack, String> repl = getReplacements(Arrays.asList(shaped.recipeItems));
+					amt += repl.size();
+					recipes.set(i, new ShapedOreRecipe(shaped, repl));
 				}
 			} else if (recipe instanceof ShapelessRecipes) {
 				ShapelessRecipes shapeless = (ShapelessRecipes) recipe;
 				if (shouldCoerce(shapeless.recipeItems)) {
-					recipes.set(i, new ShapelessOreRecipe(shapeless, getReplacements(shapeless.recipeItems)));
+					Map<ItemStack, String> repl = getReplacements(shapeless.recipeItems);
+					amt += repl.size();
+					recipes.set(i, new ShapelessOreRecipe(shapeless, repl));
 				}
 			} else if (recipe instanceof AdvRecipe) {
 				AdvRecipe adv = (AdvRecipe) recipe;
-				if (shouldCoerce(adv.input)) {
-					replaceStacks(adv.input);
-				}
+				amt += replaceStacksIC2(adv.input);
 			} else if (recipe instanceof AdvShapelessRecipe) {
 				AdvShapelessRecipe adv = (AdvShapelessRecipe) recipe;
-				if (shouldCoerce(adv.input)) {
-					replaceStacks(adv.input);
-				}
+				amt += replaceStacksIC2(adv.input);
 			} else if (recipe instanceof ShapedOreRecipe) {
 				ShapedOreRecipe shaped = (ShapedOreRecipe) recipe;
-				if (shouldCoerce(shaped.input)) {
-					replaceStacks(shaped.input);
-				}
+				amt += replaceStacksForge(shaped.input);
 			} else if (recipe instanceof ShapelessOreRecipe) {
 				ShapelessOreRecipe shapeless = (ShapelessOreRecipe) recipe;
-				if (shouldCoerce(shapeless.input)) {
-					replaceStacks(shapeless.input);
-				}
+				amt += replaceStacksForge(shapeless.input);
 			}
 		}
+		UpsilonFixesPremain.log.info("Replaced {} vanilla dye ingredients with ores", amt);
 	}
 
 	private static boolean shouldCoerce(Object[] stacks) {
@@ -143,7 +142,8 @@ public class RecipeFixing {
 		return false;
 	}
 
-	private static void replaceStacks(Object[] stacks) {
+	private static int replaceStacksIC2(Object[] stacks) {
+		int amt = 0;
 		for (int i = 0; i < stacks.length; i++) {
 			Object obj = stacks[i];
 			if (obj instanceof ItemStack) {
@@ -151,22 +151,43 @@ public class RecipeFixing {
 				Proto proto = new Proto(stack.getItem(), stack.getMetadata());
 				if (REPLACEMENTS.containsKey(proto)) {
 					stacks[i] = REPLACEMENTS.get(proto);
+					amt++;
 				}
 			}
 		}
+		return amt;
 	}
 
-	private static void replaceStacks(List<Object> stacks) {
+	private static int replaceStacksForge(Object[] stacks) {
+		int amt = 0;
+		for (int i = 0; i < stacks.length; i++) {
+			Object obj = stacks[i];
+			if (obj instanceof ItemStack) {
+				ItemStack stack = (ItemStack) obj;
+				Proto proto = new Proto(stack.getItem(), stack.getMetadata());
+				if (REPLACEMENTS.containsKey(proto)) {
+					stacks[i] = OreDictionary.getOres(REPLACEMENTS.get(proto));
+					amt++;
+				}
+			}
+		}
+		return amt;
+	}
+
+	private static int replaceStacksForge(List<Object> stacks) {
+		int amt = 0;
 		for (int i = 0; i < stacks.size(); i++) {
 			Object obj = stacks.get(i);
 			if (obj instanceof ItemStack) {
 				ItemStack stack = (ItemStack) obj;
 				Proto proto = new Proto(stack.getItem(), stack.getMetadata());
 				if (REPLACEMENTS.containsKey(proto)) {
-					stacks.set(i, REPLACEMENTS.get(proto));
+					stacks.set(i, OreDictionary.getOres(REPLACEMENTS.get(proto)));
+					amt++;
 				}
 			}
 		}
+		return amt;
 	}
 
 	private static Map<ItemStack, String> getReplacements(List<ItemStack> stacks) {
