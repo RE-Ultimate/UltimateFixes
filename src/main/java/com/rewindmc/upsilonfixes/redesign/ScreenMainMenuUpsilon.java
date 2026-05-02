@@ -107,14 +107,15 @@ public class ScreenMainMenuUpsilon extends ScreenMainMenu {
 		controlList.add(WidgetVoxButton.right(x, y, Translate.format("options.language"), () -> mc.displayScreen(new ScreenLanguage(this, mc.options))));
 		y -= incr;
 		controlList.add(WidgetVoxButton.right(x, y, "Mods", () -> mc.displayScreen(new GuiModList(this))));
-		y -= 6;
-		y -= incr;
-		controlList.add(WidgetVoxButton.right(x, y, "Forum →", () -> openURL("https://forum.sleeping.town/t/rewind-upsilon")));
-		y -= incr;
-		controlList.add(WidgetVoxButton.right(x, y, "Website →", () -> openURL("https://rewindmc.com")));
-		y -= incr;
-		controlList.add(WidgetVoxButton.right(x, y, "Issues →", () -> openURL("https://git.sleeping.town/Rewind/Upsilon/issues")));
-		y -= incr;
+		if (UpsilonFixesConfig.upsilonBranding) {
+			y -= 6;
+			y -= incr;
+			controlList.add(WidgetVoxButton.right(x, y, "Forum →", () -> openURL("https://forum.sleeping.town/t/rewind-upsilon")));
+			y -= incr;
+			controlList.add(WidgetVoxButton.right(x, y, "Website →", () -> openURL("https://rewindmc.com")));
+			y -= incr;
+			controlList.add(WidgetVoxButton.right(x, y, "Issues →", () -> openURL("https://git.sleeping.town/Rewind/Upsilon/issues")));
+		}
 	}
 	
 	private void openURL(String url) {
@@ -139,7 +140,7 @@ public class ScreenMainMenuUpsilon extends ScreenMainMenu {
 	public void drawScreen(int mouseX, int mouseY, float tickDelta) {
 		drawPanorama(this);
 		
-		if (logoTexId == -1) {
+		if (UpsilonFixesConfig.upsilonBranding && logoTexId == -1) {
 			logoTexId = glGenTextures();
 			try {
 				glBindTexture(GL_TEXTURE_2D, logoTexId);
@@ -166,28 +167,34 @@ public class ScreenMainMenuUpsilon extends ScreenMainMenu {
 		glColor4f(1, 1, 1, 1);
 		drawTexturedModalRect(mcX + 0, mcY + 0, 0,  0, r, mcH);
 		drawTexturedModalRect(mcX + r, mcY + 0, 0, 45, r, mcH);
-		
-		drawCenteredString(fontRenderer, "§lRewind Upsilon is still in beta!", width/2, 5, 0xFFFF5588);
-		drawCenteredString(fontRenderer, "Take regular backups!", width/2, 17, -1);
+
+		if (UpsilonFixesConfig.upsilonBranding) {
+			drawCenteredString(fontRenderer, "§lRewind Upsilon is still in beta!", width/2, 5, 0xFFFF5588);
+			drawCenteredString(fontRenderer, "Take regular backups!", width/2, 17, -1);
+		}
 		
 		int uW = 160;
 		int uH = 23;
 		int uX = (width-uW)/2;
 		int uY = 60;
-		
-		glBindTexture(GL_TEXTURE_2D, logoTexId);
-		tess.startDrawingQuads();
-		//                   x      y      z    u  v
-		tess.addVertexWithUV(uX   , uY+uH, 0,   0, 1);
-		tess.addVertexWithUV(uX+uW, uY+uH, 0,   1, 1);
-		tess.addVertexWithUV(uX+uW, uY   , 0,   1, 0);
-		tess.addVertexWithUV(uX   , uY   , 0,   0, 0);
-		tess.draw();
+
+		if (UpsilonFixesConfig.upsilonBranding) {
+			glBindTexture(GL_TEXTURE_2D, logoTexId);
+			tess.startDrawingQuads();
+			//                   x      y      z    u  v
+			tess.addVertexWithUV(uX   , uY+uH, 0,   0, 1);
+			tess.addVertexWithUV(uX+uW, uY+uH, 0,   1, 1);
+			tess.addVertexWithUV(uX+uW, uY   , 0,   1, 0);
+			tess.addVertexWithUV(uX   , uY   , 0,   0, 0);
+			tess.draw();
+		}
 
 
 		tess.setColorOpaque_I(-1);
 		glPushMatrix();
-		glTranslatef(width / 2 + 110, 75, 0.0F);
+		int offsetX = UpsilonFixesConfig.upsilonBranding ? 110 : 90;
+		int offsetY = UpsilonFixesConfig.upsilonBranding ? 75 : 70;
+		glTranslatef(width / 2 + offsetX, offsetY, 0.0F);
 		glRotatef("Vertical!".equals(splashText) ? 70 : -20, 0, 0, 1);
 		float s = 1.8f - MathHelper.abs(MathHelper.sin(Minecraft.getSystemTime() % 1000L / 1000f * 3.1415927f * 2f) * 0.1f);
 		s = s * 100f / (fontRenderer.getStringWidth(splashText) + 32);
