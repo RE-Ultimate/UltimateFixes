@@ -15,11 +15,7 @@ import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.registry.LanguageRegistry;
 import cpw.mods.fml.relauncher.Side;
 import gregtechmod.common.items.GT_Jackhammer_Item;
-import gregtechmod.common.items.GT_MetaItem_Cell;
-import gregtechmod.common.items.GT_MetaItem_Gas;
-import gregtechmod.common.items.GT_MetaItem_Liquid;
 import ic2.core.IC2;
-import ic2.core.Ic2Items;
 import ic2.core.util.KeyboardClient;
 import info.jbcs.minecraft.chisel.Chisel;
 import logisticspipes.proxy.SimpleServiceLocator;
@@ -71,13 +67,6 @@ public class UpsilonFixesForgePostInit implements Runnable {
 		private static class GTIndirection {
 			public static void init() {
 				ChiselIndirection.init();
-				if (UpsilonFixesConfig.fixGregTechCellRemainder) {
-					try {
-						GT_MetaItem_Gas.instance.setContainerItem(Ic2Items.cell.getItem());
-						GT_MetaItem_Liquid.instance.setContainerItem(Ic2Items.cell.getItem());
-						GT_MetaItem_Cell.instance.setContainerItem(Ic2Items.cell.getItem());
-					} catch (Throwable t) {}
-				}
 			}
 		}
 		

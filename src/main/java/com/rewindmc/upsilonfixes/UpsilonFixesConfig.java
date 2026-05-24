@@ -103,7 +103,7 @@ public class UpsilonFixesConfig {
 	@Key("tweaks.fz-buff-wrath-forge")
  	@Comment("Buffs Factorization Wrath Forge construction by allowing the fire to last forever.")
  	public static boolean buffWrathForge = true;
- 
+ 	
 	@OldKey("disable-codechicken-stencil")
 	@Key("fixes.codechicken-disable-stencil")
  	@Comment("Prevents CodeChickenCore from allocating a stencil buffer. May cause rendering "
@@ -111,19 +111,19 @@ public class UpsilonFixesConfig {
  			+ "\"auto\" acts as \"on\" on macOS, and \"off\" otherwise.")
  	@Default(AutoReference.MACOS)
  	public static Trilean disableCodeChickenStencil = Trilean.AUTO;
- 	
+ 
 	@OldKey("disable-xrandr")
 	@Key("hacks.disable-xrandr")
  	@Comment("Linux-only. Disables buggy XRandR support in LWJGL2. Causes various weird issues like "
  			+ "monitor flickering when closing the game or >60Hz getting messed up.")
  	public static boolean disableXrandr = true;
- 
+ 	
 	@OldKey("disable-xycraft-quartz-crystal-worldgen")
 	@Key("tweaks.xycraft-disable-quartz-crystal-worldgen")
  	@Comment("Prevents XyCraft's quartz crystals from generating. They're a huge performance hit and "
  			+ "nobody likes them.")
  	public static boolean disableXycraftQuartzCrystalWorldgen = true;
- 	
+ 
 	@OldKey("drop-key-in-inventories")
 	@Key("backports.drop-key-in-inventories")
  	@Comment("Allows pressing the drop key over a slot in an inventory to drop the contents of the "
@@ -135,11 +135,6 @@ public class UpsilonFixesConfig {
  			+ "directory.")
  	public static boolean dumpLang = false;
  	
-	@Key("features.load-lang")
- 	@Comment("If on, loads lang files in a similar format to dump-lang (lang/modid/language.json)"
- 			+ "into the FML LanguageRegistry.")
- 	public static boolean loadLang = true;
- 
 	@OldKey("fix-anvil-peripheral")
 	@Key("fixes.miscperipherals-anvil")
 	@Comment("Fixes the MiscPeripherals anvil being able to repair with insufficient XP and "
@@ -158,18 +153,18 @@ public class UpsilonFixesConfig {
  			"chunkloaders running for a specified time after the player logged off. This never " +
  			"worked, deactivating all chunk loaders of offline players instantly.")
  	public static boolean fixChickenChunksAwayTimeout = true;
- 
+ 	
 	@OldKey("fix-codechickencore-hierarchy-check")
 	@Key("fixes.codechickencore-hierarchy-check")
  	@Comment("Prevents CodeChickenCore from exploding when prematurely reading classes.")
  	public static boolean fixCodeChickenCoreHierarchyCheck = true;
- 	
+ 
 	@OldKey("fix-dartcraft-force-disabling-gregtech-tweaks")
 	@Key("fixes.dartcraft-force-disabling-gregtech-tweaks")
  	@Comment("Removes DartCraft forcefully undoing GregTech's recipe tweaks. This is misguided in "
  			+ "the first place as GregTech lets you disable its changes in its config.")
  	public static boolean fixDartCraftForceDisablingGregTechTweaks = true;
- 	
+ 
 	@OldKey("fix-dartcraft-force-engine-limit")
 	@Key("fixes.dartcraft-force-engine-limit")
  	@Comment("Fixes the DartCraft Force Engine being effectively limited to 10MJ/t due to an "
@@ -225,35 +220,29 @@ public class UpsilonFixesConfig {
  	@Comment("Fixes an infinite loop with the Factorization mixer caused by a minor oversight.")
  	public static boolean fixFzMixerInfiniteLoop = true;
  	
-	@OldKey("fix-gregtech-cell-remainder")
-	@Key("fixes.gregtech-cell-remainder")
-	@Comment("Configures remainder items for GregTech cells. May break more than it fixes, needs "
-			+ "more research and work.")
- 	public static boolean fixGregTechCellRemainder = true;
- 	
 	@OldKey("fix-ic2-seasonal-crash")
 	@Key("fixes.ic2-seasonal-crash")
  	@Comment("Fixes a crash when IC2 tries to apply seasonal easter eggs to certain entities.")
  	public static boolean fixIC2SeasonalCrash = true;
- 
+ 	
 	@OldKey("fix-miscperipherals-asm")
 	@Key("fixes.miscperipherals-asm-misuse")
  	@Comment("Fixes misuse of the ASM API by MiscPeripherals. Allows running with newer ASM "
  			+ "libraries that have stricter checking.")
  	public static boolean fixMiscPeripheralsASM = true;
- 
+ 	
 	@OldKey("fix-portal-gun-resources")
 	@Key("fixes.portalgun-resources")
  	@Comment("Fixes sounds and music for Portal Gun by replacing the asset index.")
  	public static boolean fixPortalGunResources = true;
- 	
+ 
 	@OldKey("fix-rp2-hitboxes")
 	@Key("fixes.rp2-hitboxes")
  	@Comment("Fixes RedPower2 non-full-block hitboxes frequently glitching out, causing players "
  			+ "to jitter and/or get stuck inside blocks. Makes lamp fixtures less scary to exist "
  			+ "near.")
  	public static boolean fixRedPowerHitboxes = true;
- 	
+ 
 	@OldKey("fix-rp2-manager-permanent-backstuff")
 	@Key("fixes.rp2-manager-permanent-backstuff")
  	@Comment("Fixes RedPower2 managers getting permanently backstuffed in complex networks that use "
@@ -289,6 +278,11 @@ public class UpsilonFixesConfig {
  			+ "instead of just recoloring the white one.")
  	public static boolean fixXycraftOreTextures = true;
  	
+	@Key("hacks.forge-texturefx-workaround")
+ 	@Comment("Prevents crashes when the dimensions of an improperly-registered TextureFX are "
+ 			+ "queried.")
+ 	public static boolean forgeTextureFXWorkaround = true;
+ 	
 	@OldKey("guis-in-portals")
 	@Key("fixes.vanilla-guis-in-portals")
  	@Comment("Allows opening GUIs in Nether portals. This was a fix for a dupe bug in Beta that "
@@ -300,7 +294,7 @@ public class UpsilonFixesConfig {
  	@Comment("Improves the item pickup mechanic from XReliquary's Coin of Fortune. Prevents a bug "
  			+ "where items would be floating at your feet but you can't pick them up.")
  	public static boolean improveXReliquaryCoinPickup = true;
- 
+ 	
 	@OldKey("increase-chat-limit")
 	@Key("tweaks.vanilla-increase-chat-limit")
 	@Comment("Increase the chat length limit to match modern versions.")
@@ -311,11 +305,16 @@ public class UpsilonFixesConfig {
 	@Comment("Stores the configuration of a dismantled Tesseract in the resulting item, and restores "
  			+ "it on place.")
  	public static boolean keepTesseractFrequencyOnDismantle = true;
- 	
+ 
 	@OldKey("layered-texture-packs")
 	@Key("features.vanilla-layered-texture-packs")
  	@Comment("Allows using multiple texture packs at once if they're marked as layerable.")
  	public static boolean layeredTexturePacks = true;
+ 	
+	@Key("features.load-lang")
+ 	@Comment("If on, loads lang files in a similar format to dump-lang (lang/modid/language.json)"
+ 			+ "into the FML LanguageRegistry.")
+ 	public static boolean loadLang = true;
  	
 	@OldKey("localize-rejuvenating-effect")
 	@Key("fixes.thaumicbees-localize-rejuvenating-effect")
