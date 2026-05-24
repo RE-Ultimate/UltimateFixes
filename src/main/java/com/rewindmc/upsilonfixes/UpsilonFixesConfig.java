@@ -231,6 +231,10 @@ public class UpsilonFixesConfig {
  			+ "libraries that have stricter checking.")
  	public static boolean fixMiscPeripheralsASM = true;
  	
+	@Key("fixes.nei-tooltip-offscreen")
+ 	@Comment("Flips the NEI tooltip to the left when it would go off-screen.")
+ 	public static boolean fixNeiTooltipOffscreen = true;
+ 
 	@OldKey("fix-portal-gun-resources")
 	@Key("fixes.portalgun-resources")
  	@Comment("Fixes sounds and music for Portal Gun by replacing the asset index.")
@@ -242,7 +246,7 @@ public class UpsilonFixesConfig {
  			+ "to jitter and/or get stuck inside blocks. Makes lamp fixtures less scary to exist "
  			+ "near.")
  	public static boolean fixRedPowerHitboxes = true;
- 
+ 	
 	@OldKey("fix-rp2-manager-permanent-backstuff")
 	@Key("fixes.rp2-manager-permanent-backstuff")
  	@Comment("Fixes RedPower2 managers getting permanently backstuffed in complex networks that use "
