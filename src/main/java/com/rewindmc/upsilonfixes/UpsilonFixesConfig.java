@@ -146,19 +146,19 @@ public class UpsilonFixesConfig {
  	@Comment("Prevents a crash when connecting a storage bus to GregTech machines, caused by AppEng "
  			+ "calling an API that no longer exists.")
  	public static boolean fixAppengQChest = true;
- 
+ 	
 	@OldKey("fix-chickenchunks-away-timeout")
 	@Key("fixes.chickenchunks-away-timeout")
  	@Comment("Fixes ChickenChunks awayTimeout feature. If enabled in the config it should keep " +
  			"chunkloaders running for a specified time after the player logged off. This never " +
  			"worked, deactivating all chunk loaders of offline players instantly.")
  	public static boolean fixChickenChunksAwayTimeout = true;
- 	
+ 
 	@OldKey("fix-codechickencore-hierarchy-check")
 	@Key("fixes.codechickencore-hierarchy-check")
  	@Comment("Prevents CodeChickenCore from exploding when prematurely reading classes.")
  	public static boolean fixCodeChickenCoreHierarchyCheck = true;
- 
+ 	
 	@OldKey("fix-dartcraft-force-disabling-gregtech-tweaks")
 	@Key("fixes.dartcraft-force-disabling-gregtech-tweaks")
  	@Comment("Removes DartCraft forcefully undoing GregTech's recipe tweaks. This is misguided in "
@@ -170,7 +170,7 @@ public class UpsilonFixesConfig {
  	@Comment("Fixes the DartCraft Force Engine being effectively limited to 10MJ/t due to an "
  			+ "oversight. This is fixed in the 1.6 version of DartCraft.")
  	public static boolean fixDartCraftForceEngineLimit = true;
- 	
+ 
 	@OldKey("fix-dartcraft-force-infuser-dimension")
 	@Key("fixes.dartcraft-force-infuser-dimension")
  	@Comment("Fixes the DartCraft Force Infuser only working in the overworld.")
@@ -230,16 +230,16 @@ public class UpsilonFixesConfig {
  	@Comment("Fixes misuse of the ASM API by MiscPeripherals. Allows running with newer ASM "
  			+ "libraries that have stricter checking.")
  	public static boolean fixMiscPeripheralsASM = true;
- 	
+	
 	@Key("fixes.nei-tooltip-offscreen")
  	@Comment("Flips the NEI tooltip to the left when it would go off-screen.")
  	public static boolean fixNeiTooltipOffscreen = true;
- 
+ 	
 	@OldKey("fix-portal-gun-resources")
 	@Key("fixes.portalgun-resources")
  	@Comment("Fixes sounds and music for Portal Gun by replacing the asset index.")
  	public static boolean fixPortalGunResources = true;
- 
+ 	
 	@OldKey("fix-rp2-hitboxes")
 	@Key("fixes.rp2-hitboxes")
  	@Comment("Fixes RedPower2 non-full-block hitboxes frequently glitching out, causing players "
@@ -252,12 +252,20 @@ public class UpsilonFixesConfig {
  	@Comment("Fixes RedPower2 managers getting permanently backstuffed in complex networks that use "
  			+ "multiple priorities.")
  	public static boolean fixRedPowerManagerPermanentBackstuff = true;
- 	
+ 
 	@OldKey("fix-rp2-missing-inventory-npe")
 	@Key("fixes.rp2-missing-inventory-npe")
  	@Comment("Fixes a NullPointerException crash caused by some cases of stale Inventory references "
  			+ "in RedPower2, primarily caused by Managers")
  	public static boolean fixRedPowerMissingInventoryNPE = true;
+ 
+	@Key("fixes.thaumcraft-tag-npe")
+ 	@Comment("Prevents addition of null aspects to Thaumcraft flux and item data.")
+ 	public static boolean fixThaumcraftTagNpe = true;
+ 	
+	@Key("fixes.thread-safety")
+ 	@Comment("Fixes random crashes caused by various mods accessing the world from the wrong thread.")
+ 	public static boolean fixThreadSafety = true;
  	
 	@OldKey("fix-thermal-tesseract-cast")
 	@Key("fixes.thermal-tesseract-cast")
@@ -303,7 +311,7 @@ public class UpsilonFixesConfig {
 	@Key("tweaks.vanilla-increase-chat-limit")
 	@Comment("Increase the chat length limit to match modern versions.")
  	public static boolean increaseChatLimit = true;
- 
+ 	
 	@OldKey("keep-tesseract-frequency-on-dismantle")
 	@Key("features.thermal-keep-tesseract-config-on-dismantle")
 	@Comment("Stores the configuration of a dismantled Tesseract in the resulting item, and restores "
@@ -314,7 +322,7 @@ public class UpsilonFixesConfig {
 	@Key("features.vanilla-layered-texture-packs")
  	@Comment("Allows using multiple texture packs at once if they're marked as layerable.")
  	public static boolean layeredTexturePacks = true;
- 	
+ 
 	@Key("features.load-lang")
  	@Comment("If on, loads lang files in a similar format to dump-lang (lang/modid/language.json)"
  			+ "into the FML LanguageRegistry.")
@@ -340,25 +348,25 @@ public class UpsilonFixesConfig {
 	@Key("features.xycraft-fabricator-logisticspipes-import")
  	@Comment("Adds XyCraft's Fabricator as an importable tile entity in crafting logistics pipes.")
  	public static boolean logisticsPipesFabricatorImport = true;
- 
+ 	
 	@OldKey("modern-durability-color")
 	@Key("backports.vanilla-modern-durability-color")
  	@Comment("Use a more legible hue-based gradient for the durability bar, rather than raw RGB. "
  			+ "1.11 backport.")
  	public static boolean modernDurabilityColor = true;
- 	
+ 
 	@OldKey("modern-fps-slider")
 	@Key("backports.vanilla-modern-fps-slider")
  	@Comment("Replace the \"Performance\" option with an FPS slider. 1.7 backport.")
  	public static boolean modernFpsSlider = true;
- 
+ 	
 	@OldKey("modern-gui-scale")
 	@Key("backports.vanilla-modern-gui-scale")
  	@Comment("Replaces GUI Scale with a slider, instead of just Auto/Small/Normal/Large. 1.13 "
  			+ "backport, sort of. Vanilla still uses a cycling button in 1.21.5, the usage of a "
  			+ "slider is a Sodium thing.")
  	public static boolean modernGuiScale = true;
- 	
+ 
 	@OldKey("modern-hotbar-binds")
 	@Key("backports.vanilla-modern-hotbar-binds")
  	@Comment("Allows individually rebinding every hotbar key, instead of always using number keys. "
@@ -397,12 +405,12 @@ public class UpsilonFixesConfig {
 	@Key("remove.all-version-checkers")
  	@Comment("Even remove update checkers that still work. Allows a fully-offline game launch.")
  	public static boolean removeAllVersionCheckers = false;
- 
+ 	
 	@OldKey("remove-dead-cosmetics")
 	@Key("remove.dead-cosmetics")
  	@Comment("Prevent various mods from contacting dead servers for cosmetic features, such as capes.")
  	public static boolean removeDeadCosmetics = true;
-	 
+ 
 	@Key("remove.portalgun-resource-downloader")
  	@Comment("Prevent Portal Gun from attempting to download resources. Alternative to "
  			+ "fixes.portalgun-resources that prevents server connections, but is incapable of "
@@ -414,7 +422,7 @@ public class UpsilonFixesConfig {
 	@Key("remove.vanilla-snooper")
  	@Comment("Removes the vanilla snooper. The server is gone anyway.")
  	public static boolean removeSnooper = true;
- 	
+	 
 	@Key("remove.vanilla-resource-downloader")
  	@Comment("Prevent vanilla from attempting to contact a dead S3 bucket on launch to check for "
  			+ "resources to download. This is handled by launchers nowadays, and sounds are "
@@ -426,7 +434,7 @@ public class UpsilonFixesConfig {
  	@Comment("Removes attempts to contact dead version servers by mods that no longer receive "
  			+ "updates. (As such, does not disable BlockHelper or BuildCraft.)")
  	public static boolean removeVersionCheckers = true;
- 
+ 	
 	@OldKey("smearing")
 	@Key("backports.vanilla-smearing")
  	@Comment("Allows holding left/right click and dragging with an item on your cursor to spread "
@@ -445,6 +453,11 @@ public class UpsilonFixesConfig {
  			+ "\"auto\" acts as \"on\" on macOS, and \"off\" otherwise.")
  	@Default(AutoReference.MACOS)
  	public static Trilean swapRedBlue = Trilean.AUTO;
+ 
+	@Key("features.tattle-thread-safety")
+ 	@Comment("If on, prints errors to the log whenever the world is accessed from a thread other than "
+ 			+ "the game thread.")
+ 	public static boolean tattleThreadSafety = false;
  
 	@Key("tweaks.miscperipherals-bee-analyzer")
  	@Comment("Adds additional methods to the MiscPeripherals Bee Analyzer to allow reading both "
