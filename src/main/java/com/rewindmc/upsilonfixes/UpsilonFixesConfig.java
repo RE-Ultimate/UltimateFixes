@@ -219,7 +219,11 @@ public class UpsilonFixesConfig {
 	@Key("fixes.fz-mixer-infinite-loop")
  	@Comment("Fixes an infinite loop with the Factorization mixer caused by a minor oversight.")
  	public static boolean fixFzMixerInfiniteLoop = true;
- 	
+
+	@Key("fixes.ic2-network-crash")
+	@Comment("Fixes a crash and console spam when large amounts of IC2 tile entity updates are send.")
+	public static boolean fixIC2NetworkCrash = true;
+
 	@OldKey("fix-ic2-seasonal-crash")
 	@Key("fixes.ic2-seasonal-crash")
  	@Comment("Fixes a crash when IC2 tries to apply seasonal easter eggs to certain entities.")
