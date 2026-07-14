@@ -70,7 +70,7 @@ public class UpsilonFixesConfig {
  			+ "often thought to be unused, but there are some obscure ways to get it in Thaumcraft, "
  			+ "so the Flux bee should be able to provide it.")
  	public static boolean aerFromFluxBee = true;
- 	
+	
 	@OldKey("asm-workaround")
 	@Key("hacks.asm-workaround")
  	@Comment("Makes ASM 4.0 pretend to be able to understand Java 8 class files. Necessary when "
@@ -103,6 +103,10 @@ public class UpsilonFixesConfig {
 	@Key("tweaks.fz-buff-wrath-forge")
  	@Comment("Buffs Factorization Wrath Forge construction by allowing the fire to last forever.")
  	public static boolean buffWrathForge = true;
+ 	
+	@Key("fixes.decorator-queue")
+	@Comment("Adds a biome decoration queue system to fix \"Already decorating!!\" crashes.")
+	public static boolean decoratorQueue = true;
  	
 	@OldKey("disable-codechicken-stencil")
 	@Key("fixes.codechicken-disable-stencil")
@@ -267,15 +271,15 @@ public class UpsilonFixesConfig {
  	@Comment("Prevents addition of null aspects to Thaumcraft flux and item data.")
  	public static boolean fixThaumcraftTagNpe = true;
  	
-	@Key("fixes.thread-safety")
- 	@Comment("Fixes random crashes caused by various mods accessing the world from the wrong thread.")
- 	public static boolean fixThreadSafety = true;
- 	
 	@OldKey("fix-thermal-tesseract-cast")
 	@Key("fixes.thermal-tesseract-cast")
  	@Comment("Fixes Thermal Expansion tesseract ClassCastException crashes when tile entity types "
  			+ "are desynced - can be caused by frame machines, turtles, etc.")
  	public static boolean fixThermalTesseractCast = true;
+ 	
+	@Key("fixes.thread-safety")
+ 	@Comment("Fixes random crashes caused by various mods accessing the world from the wrong thread.")
+ 	public static boolean fixThreadSafety = true;
  	
 	@OldKey("fix-uncrafting-exploits")
 	@Key("fixes.twifor-uncrafting-exploits")
