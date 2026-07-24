@@ -35,7 +35,7 @@ public class AuraCalculationThreadTransformer extends UpsilonMiniTransformer {
 	}
 	
 	public static class Hooks {
-		public Random getSafeRandom() {
+		public static Random getSafeRandom() {
 			return ThreadLocalRandom.current();
 		}
 	}
