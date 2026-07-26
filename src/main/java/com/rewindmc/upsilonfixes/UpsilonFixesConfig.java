@@ -162,6 +162,10 @@ public class UpsilonFixesConfig {
 	@Key("fixes.codechickencore-hierarchy-check")
  	@Comment("Prevents CodeChickenCore from exploding when prematurely reading classes.")
  	public static boolean fixCodeChickenCoreHierarchyCheck = true;
+
+	@Key("fixes.codechickencore-networkclosedexception-crash")
+	@Comment("Prevents a crash when the connection is closed while joining the game.")
+	public static boolean fixCodeChickenCoreNetworkClosedExceptionCrash = true;
  	
 	@OldKey("fix-dartcraft-force-disabling-gregtech-tweaks")
 	@Key("fixes.dartcraft-force-disabling-gregtech-tweaks")
