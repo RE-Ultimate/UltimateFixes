@@ -64,13 +64,18 @@ public class UpsilonFixesConfig {
 		}
 	}
 	
+	@Key("tweaks.additional-dartcraft-force-engine-throttles")
+ 	@Comment("Adds some additional throttles to the DartCraft Force Engine between water and "
+ 			+ "crushed ice in effectiveness. Namely, sulfuric acid and milk.")
+ 	public static boolean additionalDartCraftForceEngineThrottles = true;
+	
 	@OldKey("aer-from-flux-bee")
 	@Key("tweaks.thaumicbees-aer-from-flux-bee")
  	@Comment("Allows the Flux bee from Thaumic Bees to provide Aer-type flux. The Aer effect is "
  			+ "often thought to be unused, but there are some obscure ways to get it in Thaumcraft, "
  			+ "so the Flux bee should be able to provide it.")
  	public static boolean aerFromFluxBee = true;
-	
+ 	
 	@OldKey("asm-workaround")
 	@Key("hacks.asm-workaround")
  	@Comment("Makes ASM 4.0 pretend to be able to understand Java 8 class files. Necessary when "
@@ -107,7 +112,7 @@ public class UpsilonFixesConfig {
 	@Key("fixes.decorator-queue")
 	@Comment("Adds a biome decoration queue system to fix \"Already decorating!!\" crashes.")
 	public static boolean decoratorQueue = true;
- 	
+ 
 	@OldKey("disable-codechicken-stencil")
 	@Key("fixes.codechicken-disable-stencil")
  	@Comment("Prevents CodeChickenCore from allocating a stencil buffer. May cause rendering "
@@ -115,19 +120,19 @@ public class UpsilonFixesConfig {
  			+ "\"auto\" acts as \"on\" on macOS, and \"off\" otherwise.")
  	@Default(AutoReference.MACOS)
  	public static Trilean disableCodeChickenStencil = Trilean.AUTO;
- 
+ 	
 	@OldKey("disable-xrandr")
 	@Key("hacks.disable-xrandr")
  	@Comment("Linux-only. Disables buggy XRandR support in LWJGL2. Causes various weird issues like "
  			+ "monitor flickering when closing the game or >60Hz getting messed up.")
  	public static boolean disableXrandr = true;
- 	
+ 
 	@OldKey("disable-xycraft-quartz-crystal-worldgen")
 	@Key("tweaks.xycraft-disable-quartz-crystal-worldgen")
  	@Comment("Prevents XyCraft's quartz crystals from generating. They're a huge performance hit and "
  			+ "nobody likes them.")
  	public static boolean disableXycraftQuartzCrystalWorldgen = true;
- 
+ 	
 	@OldKey("drop-key-in-inventories")
 	@Key("backports.drop-key-in-inventories")
  	@Comment("Allows pressing the drop key over a slot in an inventory to drop the contents of the "
@@ -150,23 +155,23 @@ public class UpsilonFixesConfig {
  	@Comment("Prevents a crash when connecting a storage bus to GregTech machines, caused by AppEng "
  			+ "calling an API that no longer exists.")
  	public static boolean fixAppengQChest = true;
- 	
+ 
 	@OldKey("fix-chickenchunks-away-timeout")
 	@Key("fixes.chickenchunks-away-timeout")
  	@Comment("Fixes ChickenChunks awayTimeout feature. If enabled in the config it should keep " +
  			"chunkloaders running for a specified time after the player logged off. This never " +
  			"worked, deactivating all chunk loaders of offline players instantly.")
  	public static boolean fixChickenChunksAwayTimeout = true;
- 
+
 	@OldKey("fix-codechickencore-hierarchy-check")
 	@Key("fixes.codechickencore-hierarchy-check")
  	@Comment("Prevents CodeChickenCore from exploding when prematurely reading classes.")
  	public static boolean fixCodeChickenCoreHierarchyCheck = true;
-
+ 	
 	@Key("fixes.codechickencore-networkclosedexception-crash")
 	@Comment("Prevents a crash when the connection is closed while joining the game.")
 	public static boolean fixCodeChickenCoreNetworkClosedExceptionCrash = true;
- 	
+ 
 	@OldKey("fix-dartcraft-force-disabling-gregtech-tweaks")
 	@Key("fixes.dartcraft-force-disabling-gregtech-tweaks")
  	@Comment("Removes DartCraft forcefully undoing GregTech's recipe tweaks. This is misguided in "
@@ -178,7 +183,7 @@ public class UpsilonFixesConfig {
  	@Comment("Fixes the DartCraft Force Engine being effectively limited to 10MJ/t due to an "
  			+ "oversight. This is fixed in the 1.6 version of DartCraft.")
  	public static boolean fixDartCraftForceEngineLimit = true;
- 
+ 	
 	@OldKey("fix-dartcraft-force-infuser-dimension")
 	@Key("fixes.dartcraft-force-infuser-dimension")
  	@Comment("Fixes the DartCraft Force Infuser only working in the overworld.")
@@ -227,7 +232,7 @@ public class UpsilonFixesConfig {
 	@Key("fixes.fz-mixer-infinite-loop")
  	@Comment("Fixes an infinite loop with the Factorization mixer caused by a minor oversight.")
  	public static boolean fixFzMixerInfiniteLoop = true;
-
+ 	
 	@Key("fixes.ic2-network-crash")
 	@Comment("Fixes a crash and console spam when large amounts of IC2 tile entity updates are send.")
 	public static boolean fixIC2NetworkCrash = true;
@@ -236,17 +241,17 @@ public class UpsilonFixesConfig {
 	@Key("fixes.ic2-seasonal-crash")
  	@Comment("Fixes a crash when IC2 tries to apply seasonal easter eggs to certain entities.")
  	public static boolean fixIC2SeasonalCrash = true;
- 	
+
 	@OldKey("fix-miscperipherals-asm")
 	@Key("fixes.miscperipherals-asm-misuse")
  	@Comment("Fixes misuse of the ASM API by MiscPeripherals. Allows running with newer ASM "
  			+ "libraries that have stricter checking.")
  	public static boolean fixMiscPeripheralsASM = true;
-	
+ 	
 	@Key("fixes.nei-tooltip-offscreen")
  	@Comment("Flips the NEI tooltip to the left when it would go off-screen.")
  	public static boolean fixNeiTooltipOffscreen = true;
- 	
+	
 	@OldKey("fix-portal-gun-resources")
 	@Key("fixes.portalgun-resources")
  	@Comment("Fixes sounds and music for Portal Gun by replacing the asset index.")
@@ -264,7 +269,7 @@ public class UpsilonFixesConfig {
  	@Comment("Fixes RedPower2 managers getting permanently backstuffed in complex networks that use "
  			+ "multiple priorities.")
  	public static boolean fixRedPowerManagerPermanentBackstuff = true;
- 
+ 	
 	@OldKey("fix-rp2-missing-inventory-npe")
 	@Key("fixes.rp2-missing-inventory-npe")
  	@Comment("Fixes a NullPointerException crash caused by some cases of stale Inventory references "
@@ -274,7 +279,7 @@ public class UpsilonFixesConfig {
 	@Key("fixes.thaumcraft-tag-npe")
  	@Comment("Prevents addition of null aspects to Thaumcraft flux and item data.")
  	public static boolean fixThaumcraftTagNpe = true;
- 	
+ 
 	@OldKey("fix-thermal-tesseract-cast")
 	@Key("fixes.thermal-tesseract-cast")
  	@Comment("Fixes Thermal Expansion tesseract ClassCastException crashes when tile entity types "
@@ -329,7 +334,7 @@ public class UpsilonFixesConfig {
 	@Comment("Stores the configuration of a dismantled Tesseract in the resulting item, and restores "
  			+ "it on place.")
  	public static boolean keepTesseractFrequencyOnDismantle = true;
- 
+ 	
 	@OldKey("layered-texture-packs")
 	@Key("features.vanilla-layered-texture-packs")
  	@Comment("Allows using multiple texture packs at once if they're marked as layerable.")
@@ -339,7 +344,7 @@ public class UpsilonFixesConfig {
  	@Comment("If on, loads lang files in a similar format to dump-lang (lang/modid/language.json)"
  			+ "into the FML LanguageRegistry.")
  	public static boolean loadLang = true;
- 	
+ 
 	@OldKey("localize-rejuvenating-effect")
 	@Key("fixes.thaumicbees-localize-rejuvenating-effect")
  	@Comment("Adds a missing lang entry for the Rejuvenating bee's effect.")
@@ -366,31 +371,37 @@ public class UpsilonFixesConfig {
  	@Comment("Use a more legible hue-based gradient for the durability bar, rather than raw RGB. "
  			+ "1.11 backport.")
  	public static boolean modernDurabilityColor = true;
- 
+ 	
 	@OldKey("modern-fps-slider")
 	@Key("backports.vanilla-modern-fps-slider")
  	@Comment("Replace the \"Performance\" option with an FPS slider. 1.7 backport.")
  	public static boolean modernFpsSlider = true;
- 	
+ 
 	@OldKey("modern-gui-scale")
 	@Key("backports.vanilla-modern-gui-scale")
  	@Comment("Replaces GUI Scale with a slider, instead of just Auto/Small/Normal/Large. 1.13 "
  			+ "backport, sort of. Vanilla still uses a cycling button in 1.21.5, the usage of a "
  			+ "slider is a Sodium thing.")
  	public static boolean modernGuiScale = true;
- 
+ 	
 	@OldKey("modern-hotbar-binds")
 	@Key("backports.vanilla-modern-hotbar-binds")
  	@Comment("Allows individually rebinding every hotbar key, instead of always using number keys. "
  			+ "1.7 backport.")
  	public static boolean modernHotbarBinds = true;
- 	
+ 
 	@OldKey("modern-java-support")
 	@Key("features.modern-java-support")
  	@Comment("Patch FML and various mods to be compatible with newer versions of the JVM.\n\n"
  			+ "\"auto\" acts as \"off\" on Java 8, and \"on\" otherwise.")
  	@Default(AutoReference.NEW_JAVA)
  	public static Trilean modernJavaSupport = Trilean.AUTO;
+ 	
+	@Key("tweaks.nerf-dartcraft-force-engine")
+ 	@Comment("Severely nerfs the DartCraft Force Engine to make its fuel values in-line with the "
+ 			+ "BC Stirling Engine and TE Steam Engine. High-end throttles still make it a better "
+ 			+ "engine, in terms of MJ per log. It is still always a faster engine.")
+ 	public static boolean nerfDartCraftForceEngine = true;
  	
 	@OldKey("optimize-state-access")
 	@Key("fixes.forge-optimize-state-access")

@@ -10,4 +10,5 @@ entrypoints {
 	hijack: "com.rewindmc.upsilonfixes.UpsilonFixesPremain";
 	forge-earlyinit: "com.rewindmc.upsilonfixes.UpsilonFixesForgeEarlyInit";
 	forge-postinit: "com.rewindmc.upsilonfixes.UpsilonFixesForgePostInit";
+	forge-loadcomplete: "com.rewindmc.upsilonfixes.UpsilonFixesForgeLoadComplete";
 }

@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.util.Map;
+
 import com.rewindmc.upsilonfixes.lang.LanguageRegistryTransformer;
 import com.rewindmc.upsilonfixes.tubestuff.AutoCraftingMk2CraftingRecipeProvider;
 import com.rewindmc.upsilonfixes.vanilla.ModernHotbarBinds;
@@ -29,6 +30,20 @@ public class UpsilonFixesForgePostInit implements Runnable {
 
 	@Override
 	public void run() {
+		ClassLoader loader = callInRelauncher("com.rewindmc.upsilonfixes.UpsilonFixesForgePostInit$InRelauncher");
+		if (Boolean.getBoolean("upsilonfixes.loadAllTargets")) {
+			for (String s : UpsilonFixesPremain.transformerTargets) {
+				try {
+					Class.forName(s.replace('/', '.'), true, loader);
+					UpsilonFixesPremain.log.info("Loaded {} successfully!", s);
+				} catch (Throwable e) {
+					UpsilonFixesPremain.log.warn("Error while loading {}", s, e);
+				}
+			}
+		}
+	}
+	
+	public static ClassLoader callInRelauncher(String clazz) {
 		try {
 			Class<?> relauncherClazz = Class.forName("cpw.mods.fml.relauncher.FMLRelauncher");
 			Method instance = relauncherClazz.getDeclaredMethod("instance");
@@ -37,19 +52,11 @@ public class UpsilonFixesForgePostInit implements Runnable {
 			Field classLoader = relauncherClazz.getDeclaredField("classLoader");
 			classLoader.setAccessible(true);
 			ClassLoader loader = (ClassLoader)classLoader.get(relauncher);
-			Class.forName("com.rewindmc.upsilonfixes.UpsilonFixesForgePostInit$InRelauncher", true, loader).getMethod("run").invoke(null);
-			if (Boolean.getBoolean("upsilonfixes.loadAllTargets")) {
-				for (String s : UpsilonFixesPremain.transformerTargets) {
-					try {
-						Class.forName(s.replace('/', '.'), true, loader);
-						UpsilonFixesPremain.log.info("Loaded {} successfully!", s);
-					} catch (Throwable e) {
-						UpsilonFixesPremain.log.warn("Error while loading {}", s, e);
-					}
-				}
-			}
+			Class.forName(clazz, true, loader).getMethod("run").invoke(null);
+			return loader;
 		} catch (Exception e) {
-			UpsilonFixesPremain.log.warn("Failed to invoke Forge postinit handler inside relaunch class loader", e);
+			UpsilonFixesPremain.log.warn("Failed to invoke {} inside relaunch class loader", clazz, e);
+			return null;
 		}
 	}
 	
