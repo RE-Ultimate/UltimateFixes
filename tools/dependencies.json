@@ -1,0 +1,142 @@
+[
+  {
+    "path": "coremods/CodeChickenCore 0.8.1.6.jar",
+    "url": "https://mediafilez.forgecdn.net/files/2233/216/CodeChickenCore%200.8.1.6.jar",
+    "sha256": "164008958bfb6ca8eedf9686589bd511f515524ef9cdaffdccd25bbff89d984e"
+  },
+  {
+    "path": "coremods/MiscPeripherals.jar",
+    "url": "https://re-ultimate.github.io/Re-Ultimate/coremods/MiscPeripherals.jar",
+    "sha256": "76d6c7cc09a285f7b4855b9a187bda70cef4f16f937f1931afecf05a3ac812ce"
+  },
+  {
+    "path": "coremods/NotEnoughItems 1.4.7.4.jar",
+    "url": "https://mediafilez.forgecdn.net/files/2233/268/NotEnoughItems%201.4.7.4.jar",
+    "sha256": "3395d9d9721eb6116ac45ea10db97237860c61ae6b1e05dab7b03429bcd096dc"
+  },
+  {
+    "path": "lib/argo-2.25.jar",
+    "url": "https://repo1.maven.org/maven2/net/sourceforge/argo/argo/2.25/argo-2.25.jar",
+    "sha256": "23c0d36b2a2fb96e4ade1f5f9773a3a4995b72de730a40519b5b85f4139e4f20"
+  },
+  {
+    "path": "lib/asm-all-4.0.jar",
+    "url": "https://files.prismlauncher.org/fmllibs/asm-all-4.0.jar",
+    "sha256": "3a927e615f0b521ea10e051d38030cc50a7cd2bc8f716b959050c178792b6e82"
+  },
+  {
+    "path": "lib/bcprov-jdk15on-147.jar",
+    "url": "https://repo1.maven.org/maven2/org/bouncycastle/bcprov-jdk15on/1.47/bcprov-jdk15on-1.47.jar",
+    "sha256": "7fb12d09f041c294f08a0a51a2808438092273b51628eecaf2e0d0030b7556f5"
+  },
+  {
+    "path": "lib/guava-12.0.1.jar",
+    "url": "https://repo1.maven.org/maven2/com/google/guava/guava/12.0.1/guava-12.0.1.jar",
+    "sha256": "ec7f9928bc0cd5ca36b32bc3965055c49843d69ac1a9ccf380fdcc3f686af7fc"
+  },
+  {
+    "path": "mods/ChiselRetro-upsilon1.0.jar",
+    "url": "https://re-ultimate.github.io/Re-Ultimate/mods/ChiselRetro-upsilon1.0.jar",
+    "sha256": "91403722fbdca3899db41a8c521fd8753bdc21ed6ce8cacc964da29a59dd71ab"
+  },
+  {
+    "path": "mods/ComputerCraft.zip",
+    "url": "https://cdn.modrinth.com/data/r7tyeVvQ/versions/Ho18G0WO/ComputerCraft1.5.zip",
+    "sha256": "4fde47d700af7ef436c0033bc044e2033761936944d7532ef1d62a077310dacb"
+  },
+  {
+    "path": "mods/DartCraft.jar",
+    "url": "https://re-ultimate.github.io/Re-Ultimate/mods/DartCraft.jar",
+    "sha256": "66a37e9f8d4a7001166633f3e46d273cbca660b7ae6b67c5465d6e37e0214fe6"
+  },
+  {
+    "path": "mods/Factorization.jar",
+    "url": "https://cdn.modrinth.com/data/XmseIqaa/versions/0.7.21/Factorization-0.7.21.jar",
+    "sha256": "f700e9ea40445437b3ecc466ab4b6a158b9b609baf2d634d679fdbfd857211bd"
+  },
+  {
+    "path": "mods/GravityGun1.4.7v2.zip",
+    "url": "https://mediafilez.forgecdn.net/files/2232/137/GravityGun1.4.7v2.zip",
+    "sha256": "8ed2f27942cc67a04a58febda377a22c66e3f6b9d6279050f46c7b28d9a4645c"
+  },
+  {
+    "path": "mods/GregTech.zip",
+    "url": "https://github.com/GregTech6/GregTech2/releases/download/v4.6.29009/gregtechmod290i.zip",
+    "sha256": "bab3a934e3d67f4484d4f68985cba5eaefc86b00372c353ca871765fbbe1eeec"
+  },
+  {
+    "path": "mods/IC2.jar",
+    "url": "https://re-ultimate.github.io/Re-Ultimate/mods/IC2.jar",
+    "sha256": "db0dacaf4b7d4a98c62c8b60cfa6bad0af6ff28fa7572f8533fae28eb9fee513"
+  },
+  {
+    "path": "mods/LogisticsPipes.jar",
+    "url": "https://re-ultimate.github.io/Re-Ultimate/mods/LogisticsPipes.jar",
+    "sha256": "37a9afd83b4c537aeff48b90d15b0e9034a7c697a13921a22ef1ddc0896fba05"
+  },
+  {
+    "path": "mods/MineFactoryReloaded.jar",
+    "url": "https://re-ultimate.github.io/Re-Ultimate/mods/MineFactoryReloaded.jar",
+    "sha256": "1ebe360d30ea10592d6a7eb4871a2d6e47ea6dcdadb77c15fbf888d05d26d5bc"
+  },
+  {
+    "path": "mods/RedPowerCore.zip",
+    "url": "https://cdn.modrinth.com/data/MOPtsKHD/versions/2.0pr6/RedPowerCore-2.0pr6.zip",
+    "sha256": "92638a55df978caf89cf824e1196d12ef2eb5c9c187954257d0030a122efa05a"
+  },
+  {
+    "path": "mods/RedPowerDigital.zip",
+    "url": "https://cdn.modrinth.com/data/IxpvJgdQ/versions/2.0pr6/RedPowerDigital-2.0pr6.zip",
+    "sha256": "a1d5f4b69b7efdb967eed3c4c56fc33bfe68cbcd13381fc38d3768b7cdecf5b9"
+  },
+  {
+    "path": "mods/RedPowerMechanical.zip",
+    "url": "https://cdn.modrinth.com/data/7MJnd7L5/versions/2.0pr6/RedPowerMechanical-2.0pr6.zip",
+    "sha256": "533cb509fdc6cb7c28419b9dba78bdff9fd93eb54bf6a3036c39e378f9c0f975"
+  },
+  {
+    "path": "mods/Thaumcraft.zip",
+    "url": "https://re-ultimate.github.io/Re-Ultimate/mods/Thaumcraft.zip",
+    "sha256": "ce010acb0a8016ff2606bc386735f2ae4d70ca6f9ef034e667b4d65dcfc3e727"
+  },
+  {
+    "path": "mods/ThermalExpansion.zip",
+    "url": "https://re-ultimate.github.io/Re-Ultimate/mods/ThermalExpansion.zip",
+    "sha256": "f24d706c37e525d8e7804968b7019b57b571cba98b4ffc0c32a9521731f69d4c"
+  },
+  {
+    "path": "mods/XReliquary.jar",
+    "url": "https://re-ultimate.github.io/Re-Ultimate/mods/XReliquary.jar",
+    "sha256": "666b1596fce65d76dbbba8fb766017d0e10f134c1cab689ec1c5aa66951f6fb6"
+  },
+  {
+    "path": "mods/XyCraft.zip",
+    "url": "https://re-ultimate.github.io/Re-Ultimate/mods/XyCraft.zip",
+    "sha256": "ed07abe0c990d38bff58f21d383acb448f3938a93da49df74e17a90313ec0157"
+  },
+  {
+    "path": "mods/buildcraft-A-1.4.7-3.4.5+upsilon1.jar",
+    "url": "https://re-ultimate.github.io/Re-Ultimate/mods/buildcraft-A-1.4.7-3.4.5%2Bupsilon1.jar",
+    "sha256": "9c081e1203451e94f03eb2a06cd1d3790c0997e1cb5a8fb52c702c9dc52efc0c"
+  },
+  {
+    "path": "mods/forestry-A-2.0.0.11.jar",
+    "url": "https://cdn.modrinth.com/data/MHni9gjy/versions/oCKQY1wF/forestry-A-2.0.0.11.jar",
+    "sha256": "2ec08d94442183135b4d6398d4c2f02698f3f64cf4030edca4112eb62ae8d642"
+  },
+  {
+    "path": "mods/immibis-core-52.4.6.jar",
+    "url": "https://cdn.modrinth.com/data/iwfxqPXL/versions/kpH2fnti/immibis-core-52.4.6.jar",
+    "sha256": "9efc4ec47957641308d6cae737e2116d1e55e5496a171809060a157e1515ad83"
+  },
+  {
+    "path": "mods/tubestuff-52.3.2.jar",
+    "url": "https://cdn.modrinth.com/data/LUTnCekN/versions/dXMyAnEf/tubestuff-52.3.2.jar",
+    "sha256": "4dc94110beaa98b979dc368afdb73ff76d450c6edccd286ef82140c4e2846bbf"
+  },
+  {
+    "path": "mods/twilightforest-1.15.4.jar",
+    "url": "https://mediafilez.forgecdn.net/files/3499/318/twilightforest-1.15.4.jar",
+    "sha256": "266bead77d46f17b4c8a33f2c9a14b797030b5f6c88ee557bfa4328376eb7aff"
+  }
+]

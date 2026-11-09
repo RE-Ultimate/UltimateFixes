@@ -110,11 +110,11 @@ public class ScreenMainMenuUpsilon extends ScreenMainMenu {
 		if (UpsilonFixesConfig.upsilonBranding) {
 			y -= 6;
 			y -= incr;
-			controlList.add(WidgetVoxButton.right(x, y, "Forum →", () -> openURL("https://forum.sleeping.town/t/rewind-upsilon")));
+			controlList.add(WidgetVoxButton.right(x, y, "Source →", () -> openURL("https://github.com/RE-Ultimate/Re-Ultimate")));
 			y -= incr;
-			controlList.add(WidgetVoxButton.right(x, y, "Website →", () -> openURL("https://rewindmc.com")));
+			controlList.add(WidgetVoxButton.right(x, y, "Project →", () -> openURL("https://github.com/RE-Ultimate")));
 			y -= incr;
-			controlList.add(WidgetVoxButton.right(x, y, "Issues →", () -> openURL("https://git.sleeping.town/Rewind/Upsilon/issues")));
+			controlList.add(WidgetVoxButton.right(x, y, "Issues →", () -> openURL("https://github.com/RE-Ultimate/Re-Ultimate/issues")));
 		}
 	}
 	
@@ -144,7 +144,7 @@ public class ScreenMainMenuUpsilon extends ScreenMainMenu {
 			logoTexId = glGenTextures();
 			try {
 				glBindTexture(GL_TEXTURE_2D, logoTexId);
-				BufferedImage img = ImageIO.read(ScreenMainMenuUpsilon.class.getResource("/upsilon-logo.png"));
+				BufferedImage img = ImageIO.read(ScreenMainMenuUpsilon.class.getResource("/reultimate-logo.png"));
 				glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
 				glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
 				ByteBuffer buf = BufferUtils.createByteBuffer(img.getWidth()*img.getHeight()*4);
@@ -169,7 +169,7 @@ public class ScreenMainMenuUpsilon extends ScreenMainMenu {
 		drawTexturedModalRect(mcX + r, mcY + 0, 0, 45, r, mcH);
 
 		if (UpsilonFixesConfig.upsilonBranding) {
-			drawCenteredString(fontRenderer, "§lRewind Upsilon is still in beta!", width/2, 5, 0xFFFF5588);
+			drawCenteredString(fontRenderer, "§lRe:Ultimate", width/2, 5, 0xFFFFFFFF);
 			drawCenteredString(fontRenderer, "Take regular backups!", width/2, 17, -1);
 		}
 		

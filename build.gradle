@@ -7,9 +7,9 @@ targetCompatibility = 8
 
 compileJava.options.encoding = 'UTF-8'
 
-group = 'com.unascribed'
-archivesBaseName = 'UpsilonFixes'
-version = '1.8.0'
+group = 'com.reultimate'
+archivesBaseName = 'UltimateFixes'
+version = '1.8.1-reultimate.1'
 
 repositories {
 	mavenCentral {
@@ -20,7 +20,7 @@ repositories {
 		}
 	}
 	maven {
-		url 'https://repo.sleeping.town'
+		url 'https://raw.githubusercontent.com/RE-Ultimate/maven/main'
 		content {
 			includeGroup 'com.unascribed'
 		}

@@ -493,7 +493,7 @@ public class UpsilonFixesConfig {
 	 
 	@OldKey("upsilon-branding")
 	@Key("features.upsilon-branding")
- 	@Comment("Enables the Rewind Upsilon modpack branding.")
+	@Comment("Enables the Re:Ultimate modpack branding.")
  	public static boolean upsilonBranding = false;
 	 
 	@Key("backports.vanilla-whirlpool-fix")

@@ -26,7 +26,7 @@ public class ThreadDownloadResourcesTransformer extends UpsilonMiniTransformer {
 			ctx.search(LDC("http://repo.creeperhost.net/static/ichun/portalgun.xml")).jumpAfter();
 			ctx.add(
 				POP(), // just yeet the old URL off the stack instead of erasing the insn
-				LDC("https://rewindmc.com/portalgun.xml")
+				LDC("https://re-ultimate.github.io/Re-Ultimate/portalgun.xml")
 			);
 		}
 	}

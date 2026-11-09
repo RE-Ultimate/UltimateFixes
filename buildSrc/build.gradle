@@ -1,8 +1,9 @@
-task bootstrapPack(type: JavaExec) {
-	outputs.dir '../libs/pack/mods'
-
-	classpath = files('../libs/pack/unsup.jar')
-	workingDir = '../libs/pack'
+task bootstrapPack(type: Exec) {
+    inputs.file '../tools/dependencies.json'
+    inputs.file '../tools/bootstrap-dependencies.py'
+    outputs.dir '../libs/pack'
+    workingDir '..'
+    commandLine 'python3', 'tools/bootstrap-dependencies.py'
 }
 
 compileJava.dependsOn bootstrapPack

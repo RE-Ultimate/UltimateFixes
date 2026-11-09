@@ -1,7 +1,7 @@
 pluginManagement {
 	repositories {
 		maven {
-			url 'https://repo.sleeping.town'
+			url 'https://raw.githubusercontent.com/RE-Ultimate/maven/main'
 			content {
 				includeGroup 'com.unascribed.nilgradle'
 			}
