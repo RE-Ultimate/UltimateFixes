@@ -15,6 +15,8 @@ repositories {
 	mavenCentral {
 		content {
 			includeGroup 'org.lwjgl.lwjgl'
+			includeGroup 'junit'
+			includeGroup 'org.hamcrest'
 		}
 	}
 	maven {
@@ -78,7 +80,22 @@ dependencies {
 	mod 'libs:ComputerCraft'
 	mod 'libs:Forestry'
 	mod 'libs:Thaumcraft'
+	mod 'libs:MineFactoryReloaded'
+	testImplementation 'junit:junit:4.13.2'
+	testRuntimeOnly fileTree('libs/pack/lib') { include '*.jar' }
 }
+
+sourceSets.test.compileClasspath += sourceSets.main.compileClasspath
+sourceSets.test.runtimeClasspath += sourceSets.main.compileClasspath
+tasks.register('prepareTestEnchantments', Copy) {
+	dependsOn compileJava
+	from zipTree('build/nil/cache/net.minecraftforge.forge-1.4.7-6.6.2.534-universal.jar')
+	include 'net/minecraft/enchantment/Enchantment.class'
+	into 'build/test-enchantments'
+}
+
+test.dependsOn prepareTestEnchantments
+sourceSets.test.runtimeClasspath = files('build/test-enchantments') + sourceSets.test.runtimeClasspath
 
 mappings {
 	work 'com.unascribed:unknownthingy:1.19@tsrg'

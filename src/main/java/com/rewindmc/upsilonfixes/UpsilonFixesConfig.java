@@ -155,6 +155,10 @@ public class UpsilonFixesConfig {
  	@Comment("Prevents a crash when connecting a storage bus to GregTech machines, caused by AppEng "
  			+ "calling an API that no longer exists.")
  	public static boolean fixAppengQChest = true;
+
+	@Key("fixes.mfr-auto-enchanter")
+	@Comment("Prevents the MFR Auto-Enchanter from selecting duplicate or incompatible enchantments.")
+	public static boolean fixMfrAutoEnchanter = true;
  
 	@OldKey("fix-chickenchunks-away-timeout")
 	@Key("fixes.chickenchunks-away-timeout")
